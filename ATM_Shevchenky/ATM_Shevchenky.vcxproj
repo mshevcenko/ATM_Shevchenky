@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+***************************************************************************************************
+ Copyright (C) 2023 The Qt Company Ltd.
+ SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
+***************************************************************************************************
+-->
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="create_overflow_credit_service.ui" />
+    <QtUic Include="create_transfer.ui" />
+    <QtUic Include="create_transfer_daemon.ui" />
+    <QtUic Include="credit_limit.ui" />
+    <QtUic Include="login.ui" />
+    <QtUic Include="main.ui" />
+    <QtUic Include="overflow.ui" />
+    <QtUic Include="overflow_credit_services_list.ui" />
+    <QtUic Include="overflow_credit_service_card.ui" />
+    <QtUic Include="overflow_service.ui" />
+    <QtUic Include="test_shadow.ui" />
+    <QtUic Include="transfer.ui" />
+    <QtUic Include="transfer_daemons_list.ui" />
+    <QtUic Include="transfer_daemon_card.ui" />
+    <QtUic Include="transfer_from_card.ui" />
+    <QtUic Include="transfer_history.ui" />
+    <QtUic Include="transfer_to_card.ui" />
+    <QtUic Include="withdrawal.ui" />
+    <QtUic Include="withdrawal_card.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="WithdrawalWidget.h" />
+    <QtMoc Include="MainWindow.h" />
+    <QtMoc Include="customshadoweffect.h" />
+    <QtMoc Include="CreateTransferDaemonWidget.h" />
+    <QtMoc Include="aspectratiopixmaplabel.h" />
+    <QtMoc Include="TransferWidget.h" />
+    <QtMoc Include="TransferDaemonsListWidget.h" />
+    <QtMoc Include="TransferDaemonCardWidget.h" />
+    <QtMoc Include="ServiceOptionWidget.h" />
+    <QtMoc Include="MainWidget.h" />
+    <QtMoc Include="LoginWidget.h" />
+    <QtMoc Include="CreateTransferWidget.h" />
+    <QtMoc Include="ClickableLabel.h" />
+    <QtMoc Include="OverflowWidget.h" />
+    <QtMoc Include="OverflowServiceWidget.h" />
+    <QtMoc Include="CreditLimitWidget.h" />
+    <QtMoc Include="CreateOverflowCreditServiceWidget.h" />
+    <QtMoc Include="OverflowCreditServicesListWidget.h" />
+    <QtMoc Include="TransferHistoryWidget.h" />
+    <QtMoc Include="MoneyLineEdit.h" />
+    <QtMoc Include="IntegerLineEdit.h" />
+    <ClInclude Include="ui_create_overflow_credit_service.h" />
+    <ClInclude Include="ui_create_transfer.h" />
+    <ClInclude Include="ui_create_transfer_daemon.h" />
+    <ClInclude Include="ui_credit_limit.h" />
+    <ClInclude Include="ui_login.h" />
+    <ClInclude Include="ui_main.h" />
+    <ClInclude Include="ui_overflow.h" />
+    <ClInclude Include="ui_overflow_credit_services_list.h" />
+    <ClInclude Include="ui_overflow_credit_service_card.h" />
+    <ClInclude Include="ui_overflow_service.h" />
+    <ClInclude Include="ui_test_shadow.h" />
+    <ClInclude Include="ui_transfer.h" />
+    <ClInclude Include="ui_transfer_daemons_list.h" />
+    <ClInclude Include="ui_transfer_daemon_card.h" />
+    <ClInclude Include="ui_transfer_from_card.h" />
+    <ClInclude Include="ui_transfer_history.h" />
+    <ClInclude Include="ui_transfer_to_card.h" />
+    <ClInclude Include="ui_withdrawal.h" />
+    <ClInclude Include="ui_withdrawal_card.h" />
+    <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="aspectratiopixmaplabel.cpp" />
+    <ClCompile Include="ClickableLabel.cpp" />
+    <ClCompile Include="CreateOverflowCreditServiceWidget.cpp" />
+    <ClCompile Include="CreateTransferDaemonWidget.cpp" />
+    <ClCompile Include="CreateTransferWidget.cpp" />
+    <ClCompile Include="CreditLimitWidget.cpp" />
+    <ClCompile Include="customshadoweffect.cpp" />
+    <ClCompile Include="IntegerLineEdit.cpp" />
+    <ClCompile Include="LoginWidget.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainWidget.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="MoneyLineEdit.cpp" />
+    <ClCompile Include="OverflowCreditServicesListWidget.cpp" />
+    <ClCompile Include="OverflowServiceWidget.cpp" />
+    <ClCompile Include="OverflowWidget.cpp" />
+    <ClCompile Include="ServiceOptionWidget.cpp" />
+    <ClCompile Include="TransferDaemonCardWidget.cpp" />
+    <ClCompile Include="TransferDaemonsListWidget.cpp" />
+    <ClCompile Include="TransferHistoryWidget.cpp" />
+    <ClCompile Include="TransferWidget.cpp" />
+    <ClCompile Include="WithdrawalWidget.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B312D1EC-2B4B-44BC-93F4-19E5AAE1F6E1}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>6.6.0_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>6.6.0_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtUic>
+      <QtUicDir>$(ClangTidyHeaderFilter)</QtUicDir>
+    </QtUic>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtUic>
+      <QtUicDir>$(ClangTidyHeaderFilter)</QtUicDir>
+    </QtUic>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
