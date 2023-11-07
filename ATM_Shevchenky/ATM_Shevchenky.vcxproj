@@ -38,6 +38,27 @@
     <QtUic Include="withdrawal_card.ui" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="AccountDao.h" />
+    <ClInclude Include="ATM.h" />
+    <ClInclude Include="AtmDao.h" />
+    <ClInclude Include="autil.h" />
+    <ClInclude Include="Bank.h" />
+    <ClInclude Include="BankDao.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="CardDao.h" />
+    <ClInclude Include="Database.h" />
+    <ClInclude Include="gutil.h" />
+    <ClInclude Include="MoneyStorage.h" />
+    <ClInclude Include="MoneyStorageDao.h" />
+    <ClInclude Include="OverflowCreditService.h" />
+    <QtMoc Include="OverflowCreditServiceCardWidget.h" />
+    <ClInclude Include="OverflowCreditServiceDao.h" />
+    <QtMoc Include="TransferFromCardWidget.h" />
+    <QtMoc Include="TransferToCardWidget.h" />
+    <QtMoc Include="WithdrawalCardWidget.h" />
+    <ClInclude Include="WithdrawalService.h" />
+    <ClInclude Include="WithdrawalServiceDao.h" />
     <QtMoc Include="WithdrawalWidget.h" />
     <QtMoc Include="MainWindow.h" />
     <QtMoc Include="customshadoweffect.h" />
@@ -59,6 +80,12 @@
     <QtMoc Include="TransferHistoryWidget.h" />
     <QtMoc Include="MoneyLineEdit.h" />
     <QtMoc Include="IntegerLineEdit.h" />
+    <ClInclude Include="OverflowService.h" />
+    <ClInclude Include="OverflowServiceDao.h" />
+    <ClInclude Include="Transfer.h" />
+    <ClInclude Include="TransferDaemon.h" />
+    <ClInclude Include="TransferDaemonDao.h" />
+    <ClInclude Include="TransferDao.h" />
     <ClInclude Include="ui_create_overflow_credit_service.h" />
     <ClInclude Include="ui_create_transfer.h" />
     <ClInclude Include="ui_create_transfer_daemon.h" />
@@ -78,31 +105,62 @@
     <ClInclude Include="ui_transfer_to_card.h" />
     <ClInclude Include="ui_withdrawal.h" />
     <ClInclude Include="ui_withdrawal_card.h" />
-    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="AccountDao.cpp" />
     <ClCompile Include="aspectratiopixmaplabel.cpp" />
+    <ClCompile Include="ATM.cpp" />
+    <ClCompile Include="AtmDao.cpp" />
+    <ClCompile Include="Bank.cpp" />
+    <ClCompile Include="BankDao.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CardDao.cpp" />
     <ClCompile Include="ClickableLabel.cpp" />
     <ClCompile Include="CreateOverflowCreditServiceWidget.cpp" />
     <ClCompile Include="CreateTransferDaemonWidget.cpp" />
     <ClCompile Include="CreateTransferWidget.cpp" />
     <ClCompile Include="CreditLimitWidget.cpp" />
     <ClCompile Include="customshadoweffect.cpp" />
+    <ClCompile Include="Database.cpp" />
+    <ClCompile Include="gutil.cpp" />
     <ClCompile Include="IntegerLineEdit.cpp" />
     <ClCompile Include="LoginWidget.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWidget.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="MoneyLineEdit.cpp" />
+    <ClCompile Include="MoneyStorage.cpp" />
+    <ClCompile Include="MoneyStorageDao.cpp" />
+    <ClCompile Include="OverflowCreditService.cpp" />
+    <ClCompile Include="OverflowCreditServiceCardWidget.cpp" />
+    <ClCompile Include="OverflowCreditServiceDao.cpp" />
     <ClCompile Include="OverflowCreditServicesListWidget.cpp" />
+    <ClCompile Include="OverflowService.cpp" />
+    <ClCompile Include="OverflowServiceDao.cpp" />
     <ClCompile Include="OverflowServiceWidget.cpp" />
     <ClCompile Include="OverflowWidget.cpp" />
     <ClCompile Include="ServiceOptionWidget.cpp" />
+    <ClCompile Include="sqlite\shell.c" />
+    <ClCompile Include="sqlite\sqlite3.c" />
+    <ClCompile Include="Transfer.cpp" />
+    <ClCompile Include="TransferDaemon.cpp" />
     <ClCompile Include="TransferDaemonCardWidget.cpp" />
+    <ClCompile Include="TransferDaemonDao.cpp" />
     <ClCompile Include="TransferDaemonsListWidget.cpp" />
+    <ClCompile Include="TransferDao.cpp" />
+    <ClCompile Include="TransferFromCardWidget.cpp" />
     <ClCompile Include="TransferHistoryWidget.cpp" />
+    <ClCompile Include="TransferToCardWidget.cpp" />
     <ClCompile Include="TransferWidget.cpp" />
+    <ClCompile Include="WithdrawalCardWidget.cpp" />
+    <ClCompile Include="WithdrawalService.cpp" />
+    <ClCompile Include="WithdrawalServiceDao.cpp" />
     <ClCompile Include="WithdrawalWidget.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B312D1EC-2B4B-44BC-93F4-19E5AAE1F6E1}</ProjectGuid>
@@ -191,5 +249,12 @@
     <Import Project="$(QtMsBuild)\qt.targets" />
   </ImportGroup>
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets" Condition="Exists('..\packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sqlite3_c_plus_plus.1.0.3\build\native\sqlite3_c_plus_plus.targets'))" />
+  </Target>
 </Project>

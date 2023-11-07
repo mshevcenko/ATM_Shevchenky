@@ -2,13 +2,26 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <iostream>
+#include <stdio.h>
+#include <string>
 #include "ui_main.h"
 #include "MainWindow.h"
-#include "MainWidget.h"
 #include "TransferDaemonCardWidget.h"
-#include "LoginWidget.h"
 #include "Windows.h"
 #include "Wincon.h"
+#include "Database.h"
+#include "sqlite/sqlite3.h"
+#include "OverflowCreditServiceDao.h"
+#include "WithdrawalServiceDao.h"
+#include "OverflowServiceDao.h"
+#include "TransferDaemonDao.h"
+#include "MoneyStorageDao.h"
+#include "TransferDao.h"
+#include "AccountDao.h"
+#include "CardDao.h"
+#include "BankDao.h"
+#include "AtmDao.h"
+#include "autil.h"
 
 using namespace std;
 
@@ -28,10 +41,22 @@ void Console()
 
 int main(int argc, char *argv[])
 {
-    //Console();
+    Console();
+    //cout << boolalpha << atm.insertCard("1234567890876543", "1234") << endl;
+    //cout << atm.getBalance() << endl;
     QApplication a(argc, argv);
-    MainWindow mainWindow;
+    /*Card* card = g_CardDao.getByNumber("0000000000000000");
+    if (card == nullptr) { 
+        cout << "nullptr" << endl;
+    }
+    else
+    {
+        cout << card->cardNumber() << endl;
+    }*/
+    ATM atm = copyAndDeletePointer(Toolbox::getAtmWithMoney(1));
+    MainWindow mainWindow(atm);
     mainWindow.show();
+     
     //MainWidget widget; widget.show();
     //LoginWidget widget; widget.show();
     /*QWidget* widget = new QWidget();

@@ -14,13 +14,15 @@
 #include "WithdrawalWidget.h";
 #include "CreditLimitWidget.h";
 
+class ATM;
+
 class MainWindow : public QMainWindow
 {
 
 	Q_OBJECT
 
 public:
-	MainWindow(QWidget* parent = nullptr);
+	MainWindow(ATM& atm, QWidget* parent = nullptr);
 	~MainWindow();
 	void setLoginWidget();
 	void setMainWidget();
@@ -36,6 +38,7 @@ public:
 	void setWithdrawalWidget();
 	void setCreditLimitWidget();
 private:
+	ATM& _atm;
 	LoginWidget* _loginWidget;
 	MainWidget* _mainWidget;
 	TransferWidget* _transferWidget;

@@ -1,14 +1,18 @@
 #pragma once
 #include "ui_overflow.h"
 
+class ATM;
+
 class OverflowWidget : public QWidget
 {
 
     Q_OBJECT
 
 public:
-    OverflowWidget(QWidget* parent = nullptr);
+    OverflowWidget(ATM& atm, QWidget* parent = nullptr);
     ~OverflowWidget();
+
+    void updateData();
 
 signals:
     void overflowService();
@@ -17,5 +21,6 @@ signals:
     void closed();
 
 private:
+    ATM& _atm;
     Ui_Overflow ui;
 };

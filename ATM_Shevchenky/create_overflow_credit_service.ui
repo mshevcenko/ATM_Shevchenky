@@ -93,43 +93,6 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="commissionLabel">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Commission:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="commissionLineEdit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="maxLength">
-          <number>32765</number>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
      <item>
@@ -257,36 +220,6 @@
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="ammountToBeSentLabel">
-           <property name="font">
-            <font>
-             <pointsize>13</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>Ammount to be sent:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="MoneyLineEdit" name="ammountToBeSentLineEdit">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>13</pointsize>
-            </font>
-           </property>
-           <property name="maxLength">
-            <number>16</number>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
           <widget class="QLabel" name="ammountToBeReceivedLabel">
            <property name="font">
             <font>
@@ -294,12 +227,12 @@
             </font>
            </property>
            <property name="text">
-            <string>Ammount to be received:</string>
+            <string>Ammount to be triggered:</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="MoneyLineEdit" name="ammountToBeReceivedLineEdit">
+         <item row="1" column="1">
+          <widget class="MoneyLineEdit" name="ammountToBeTriggeredLineEdit">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -319,7 +252,7 @@
         </layout>
        </item>
        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-        <widget class="QPushButton" name="transferButton_2">
+        <widget class="QPushButton" name="createButton">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>

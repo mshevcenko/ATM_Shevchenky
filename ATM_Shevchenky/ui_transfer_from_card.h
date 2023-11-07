@@ -29,6 +29,8 @@ public:
     QLineEdit *fromLineEdit;
     QLabel *ammountLabel;
     QLineEdit *ammountLineEdit;
+    QLabel *dateLabel;
+    QLineEdit *dateLineEdit;
 
     void setupUi(QWidget *TransferFromCard)
     {
@@ -104,6 +106,18 @@ public:
 
         horizontalLayout->addWidget(ammountLineEdit);
 
+        dateLabel = new QLabel(widget);
+        dateLabel->setObjectName("dateLabel");
+        dateLabel->setFont(font);
+
+        horizontalLayout->addWidget(dateLabel);
+
+        dateLineEdit = new QLineEdit(widget);
+        dateLineEdit->setObjectName("dateLineEdit");
+        dateLineEdit->setFont(font);
+
+        horizontalLayout->addWidget(dateLineEdit);
+
 
         horizontalLayout_2->addWidget(widget);
 
@@ -120,6 +134,7 @@ public:
         fromLabel->setText(QCoreApplication::translate("TransferFromCard", "From:", nullptr));
         fromLineEdit->setText(QCoreApplication::translate("TransferFromCard", "1234567890123456", nullptr));
         ammountLabel->setText(QCoreApplication::translate("TransferFromCard", "Ammount:", nullptr));
+        dateLabel->setText(QCoreApplication::translate("TransferFromCard", "Date:", nullptr));
     } // retranslateUi
 
 };

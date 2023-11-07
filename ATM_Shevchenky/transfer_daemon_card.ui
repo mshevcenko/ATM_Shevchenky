@@ -101,7 +101,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Ammount:</string>
+             <string>Amount:</string>
             </property>
            </widget>
           </item>
@@ -131,19 +131,19 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QLabel" name="nextTransferDateLabel">
+           <widget class="QLabel" name="nextTransferDayLabel">
             <property name="font">
              <font>
               <pointsize>13</pointsize>
              </font>
             </property>
             <property name="text">
-             <string>Next Transfer Date:</string>
+             <string>Next Transfer Day:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="nextTransferDayLineEdit">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -173,7 +173,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_2">
+           <widget class="QLineEdit" name="frequencyLineEdit">
             <property name="minimumSize">
              <size>
               <width>100</width>
@@ -228,7 +228,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="ClickableLabel" name="deleteLabel">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
           <horstretch>0</horstretch>
@@ -280,6 +280,11 @@
    <class>IntegerLineEdit</class>
    <extends>QLineEdit</extends>
    <header>IntegerLineEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
+   <header>ClickableLabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

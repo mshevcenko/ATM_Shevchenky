@@ -39,9 +39,9 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_2;
     QVBoxLayout *verticalLayout;
+    QSpacerItem *verticalSpacer_2;
     QWidget *createOverflowServiceWidget;
     QVBoxLayout *verticalLayout_2;
-    QSpacerItem *verticalSpacer_2;
     QLabel *createOverflowServiceLabel;
     QFormLayout *formLayout_3;
     QLabel *targetLabel1;
@@ -142,16 +142,16 @@ public:
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName("verticalLayout");
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_2);
+
         createOverflowServiceWidget = new QWidget(OverflowService);
         createOverflowServiceWidget->setObjectName("createOverflowServiceWidget");
         verticalLayout_2 = new QVBoxLayout(createOverflowServiceWidget);
-        verticalLayout_2->setSpacing(0);
+        verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_2->addItem(verticalSpacer_2);
-
         createOverflowServiceLabel = new QLabel(createOverflowServiceWidget);
         createOverflowServiceLabel->setObjectName("createOverflowServiceLabel");
         QFont font3;
@@ -228,7 +228,7 @@ public:
         deleteOverflowServiceWidget = new QWidget(OverflowService);
         deleteOverflowServiceWidget->setObjectName("deleteOverflowServiceWidget");
         verticalLayout_3 = new QVBoxLayout(deleteOverflowServiceWidget);
-        verticalLayout_3->setSpacing(0);
+        verticalLayout_3->setSpacing(6);
         verticalLayout_3->setObjectName("verticalLayout_3");
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         overflowServiceLabel = new QLabel(deleteOverflowServiceWidget);

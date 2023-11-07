@@ -1,22 +1,25 @@
 #include "MainWindow.h"
+#include "ATM.h"
 
-MainWindow::MainWindow(QWidget* parent) :
+MainWindow::MainWindow(ATM& atm, QWidget* parent) :
 	QMainWindow(parent),
-	_loginWidget(new LoginWidget(this)),
-	_mainWidget(new MainWidget(this)),
-	_transferWidget(new TransferWidget(this)),
-	_createTransferWidget(new CreateTransferWidget(this)),
-	_createTransferDaemonWidget(new CreateTransferDaemonWidget(this)),
-	_transferDaemonsListWidget(new TransferDaemonsListWidget(this)),
-	_overflowWidget(new OverflowWidget(this)),
-	_overflowServiceWidget(new OverflowServiceWidget(this)),
-	_createOverflowCreditServiceWidget(new CreateOverflowCreditServiceWidget(this)),
-	_overflowCreditServicesListWidget(new OverflowCreditServicesListWidget(this)),
-	_transferHistoryWidget(new TransferHistoryWidget(this)),
-	_withdrawalWidget(new WithdrawalWidget(this)),
-	_creditLimitWidget(new CreditLimitWidget(this))
+	_atm(atm),
+	_loginWidget(new LoginWidget(_atm, this)),
+	_mainWidget(new MainWidget(_atm, this)),
+	_transferWidget(new TransferWidget(_atm, this)),
+	_createTransferWidget(new CreateTransferWidget(_atm, this)),
+	_createTransferDaemonWidget(new CreateTransferDaemonWidget(_atm, this)),
+	_transferDaemonsListWidget(new TransferDaemonsListWidget(_atm, this)),
+	_overflowWidget(new OverflowWidget(_atm, this)),
+	_overflowServiceWidget(new OverflowServiceWidget(_atm, this)),
+	_createOverflowCreditServiceWidget(new CreateOverflowCreditServiceWidget(_atm, this)),
+	_overflowCreditServicesListWidget(new OverflowCreditServicesListWidget(_atm, this)),
+	_transferHistoryWidget(new TransferHistoryWidget(_atm, this)),
+	_withdrawalWidget(new WithdrawalWidget(_atm, this)),
+	_creditLimitWidget(new CreditLimitWidget(_atm, this))
 {
 	setMinimumSize(650, 650);
+	_loginWidget->updateData();
 	setCentralWidget(_loginWidget);
 	_mainWidget->setVisible(false);
 	_transferWidget->setVisible(false);
@@ -195,6 +198,7 @@ void MainWindow::setLoginWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_loginWidget);
+	_loginWidget->updateData();
 	_loginWidget->setVisible(true);
 }
 
@@ -202,6 +206,7 @@ void MainWindow::setMainWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_mainWidget);
+	_mainWidget->updateData();
 	_mainWidget->setVisible(true);
 }
 
@@ -209,6 +214,7 @@ void MainWindow::setTransferWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_transferWidget);
+	_transferWidget->updateData();
 	_transferWidget->setVisible(true);
 }
 
@@ -216,6 +222,7 @@ void MainWindow::setCreateTransferWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_createTransferWidget);
+	_createTransferWidget->updateData();
 	_createTransferWidget->setVisible(true);
 }
 
@@ -223,6 +230,7 @@ void MainWindow::setCreateTransferDaemonWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_createTransferDaemonWidget);
+	_createTransferDaemonWidget->updateData();
 	_createTransferDaemonWidget->setVisible(true);
 }
 
@@ -230,6 +238,7 @@ void MainWindow::setTransferDaemonsListWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_transferDaemonsListWidget);
+	_transferDaemonsListWidget->updateData();
 	_transferDaemonsListWidget->setVisible(true);
 }
 
@@ -237,6 +246,7 @@ void MainWindow::setOverflowWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_overflowWidget);
+	_overflowWidget->updateData();
 	_overflowWidget->setVisible(true);
 }
 
@@ -244,6 +254,7 @@ void MainWindow::setOverflowServiceWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_overflowServiceWidget);
+	_overflowServiceWidget->updateData();
 	_overflowServiceWidget->setVisible(true);
 }
 
@@ -251,6 +262,7 @@ void MainWindow::setCreateOverflowCreditServiceWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_createOverflowCreditServiceWidget);
+	_createOverflowCreditServiceWidget->updateData();
 	_createOverflowCreditServiceWidget->setVisible(true);
 }
 
@@ -258,6 +270,7 @@ void MainWindow::setOverflowCreditServicesListWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_overflowCreditServicesListWidget);
+	_overflowCreditServicesListWidget->updateData();
 	_overflowCreditServicesListWidget->setVisible(true);
 }
 
@@ -265,6 +278,7 @@ void MainWindow::setTransferHistoryWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_transferHistoryWidget);
+	_transferHistoryWidget->updateData();
 	_transferHistoryWidget->setVisible(true);
 }
 
@@ -272,6 +286,7 @@ void MainWindow::setWithdrawalWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_withdrawalWidget);
+	_withdrawalWidget->updateData();
 	_withdrawalWidget->setVisible(true);
 }
 
@@ -279,5 +294,6 @@ void MainWindow::setCreditLimitWidget()
 {
 	takeCentralWidget()->setVisible(false);
 	setCentralWidget(_creditLimitWidget);
+	_creditLimitWidget->updateData();
 	_creditLimitWidget->setVisible(true);
 }

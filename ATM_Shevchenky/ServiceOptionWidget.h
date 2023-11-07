@@ -2,7 +2,6 @@
 #include <QFrame>
 #include <QGraphicsDropShadowEffect>
 #include "customshadoweffect.h"
-#include "Window.h"
 
 class ServiceOptionWidget : public QFrame
 {
@@ -10,7 +9,6 @@ class ServiceOptionWidget : public QFrame
 
 public:
 	explicit ServiceOptionWidget(QWidget* parent = nullptr);
-	//void setTargetWindow(Window window);
 
 signals:
 	void clicked();

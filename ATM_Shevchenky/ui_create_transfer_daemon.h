@@ -12,7 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
-#include <QtWidgets/QDateTimeEdit>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -51,13 +51,13 @@ public:
     QLabel *targetLabel;
     IntegerLineEdit *targetLineEdit;
     QLabel *nextTransferDateLabel;
-    QDateTimeEdit *nextTransferDateTimeEdit;
     QLabel *frequencyLabel;
     QSpinBox *frequencySpinBox;
     QLabel *ammountToBeSentLabel;
     MoneyLineEdit *ammountToBeSentLineEdit;
     QLabel *ammountToBeReceivedLabel;
     MoneyLineEdit *ammountToBeReceivedLineEdit;
+    QDateEdit *nextTransferDayEdit;
     QCheckBox *activeCheckBox;
     QPushButton *createButton;
     QSpacerItem *verticalSpacer_2;
@@ -67,7 +67,7 @@ public:
     {
         if (CreateTransferDaemon->objectName().isEmpty())
             CreateTransferDaemon->setObjectName("CreateTransferDaemon");
-        CreateTransferDaemon->resize(652, 504);
+        CreateTransferDaemon->resize(701, 504);
         verticalLayout_2 = new QVBoxLayout(CreateTransferDaemon);
         verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout = new QHBoxLayout();
@@ -197,12 +197,6 @@ public:
 
         formLayout_2->setWidget(3, QFormLayout::LabelRole, nextTransferDateLabel);
 
-        nextTransferDateTimeEdit = new QDateTimeEdit(CreateTransferDaemon);
-        nextTransferDateTimeEdit->setObjectName("nextTransferDateTimeEdit");
-        nextTransferDateTimeEdit->setFont(font4);
-
-        formLayout_2->setWidget(3, QFormLayout::FieldRole, nextTransferDateTimeEdit);
-
         frequencyLabel = new QLabel(CreateTransferDaemon);
         frequencyLabel->setObjectName("frequencyLabel");
         frequencyLabel->setFont(font4);
@@ -237,7 +231,7 @@ public:
         sizePolicy2.setHeightForWidth(ammountToBeSentLineEdit->sizePolicy().hasHeightForWidth());
         ammountToBeSentLineEdit->setSizePolicy(sizePolicy2);
         ammountToBeSentLineEdit->setFont(font4);
-        ammountToBeSentLineEdit->setMaxLength(10);
+        ammountToBeSentLineEdit->setMaxLength(13);
 
         formLayout_2->setWidget(1, QFormLayout::FieldRole, ammountToBeSentLineEdit);
 
@@ -252,9 +246,17 @@ public:
         sizePolicy2.setHeightForWidth(ammountToBeReceivedLineEdit->sizePolicy().hasHeightForWidth());
         ammountToBeReceivedLineEdit->setSizePolicy(sizePolicy2);
         ammountToBeReceivedLineEdit->setFont(font4);
-        ammountToBeReceivedLineEdit->setMaxLength(10);
+        ammountToBeReceivedLineEdit->setMaxLength(13);
 
         formLayout_2->setWidget(2, QFormLayout::FieldRole, ammountToBeReceivedLineEdit);
+
+        nextTransferDayEdit = new QDateEdit(CreateTransferDaemon);
+        nextTransferDayEdit->setObjectName("nextTransferDayEdit");
+        nextTransferDayEdit->setFont(font4);
+        nextTransferDayEdit->setProperty("showGroupSeparator", QVariant(false));
+        nextTransferDayEdit->setCalendarPopup(true);
+
+        formLayout_2->setWidget(3, QFormLayout::FieldRole, nextTransferDayEdit);
 
 
         verticalLayout->addLayout(formLayout_2);
@@ -319,7 +321,7 @@ public:
         createTransferLabelDaemon->setText(QCoreApplication::translate("CreateTransferDaemon", "Create Transfer Daemon", nullptr));
         targetLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Target:", nullptr));
         targetLineEdit->setText(QCoreApplication::translate("CreateTransferDaemon", "1234567890123456", nullptr));
-        nextTransferDateLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Next Transfer Date:", nullptr));
+        nextTransferDateLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Next Transfer Day:", nullptr));
         frequencyLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Frequency (days):", nullptr));
         ammountToBeSentLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Ammount to be sent:", nullptr));
         ammountToBeReceivedLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Ammount to be received:", nullptr));

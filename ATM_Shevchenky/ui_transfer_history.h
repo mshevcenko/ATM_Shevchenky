@@ -133,7 +133,7 @@ public:
 
         scrollArea = new QScrollArea(TransferHistory);
         scrollArea->setObjectName("scrollArea");
-        scrollArea->setStyleSheet(QString::fromUtf8("width: 0;"));
+        scrollArea->setStyleSheet(QString::fromUtf8(""));
         scrollArea->setFrameShape(QFrame::NoFrame);
         scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         scrollArea->setWidgetResizable(true);
@@ -147,7 +147,10 @@ public:
         transferHistoryLayout = new QVBoxLayout(transferHistoryWidget);
         transferHistoryLayout->setObjectName("transferHistoryLayout");
         transferHistoryLayout->setContentsMargins(0, 0, 0, 0);
-        emptyLabel = new QLabel(transferHistoryWidget);
+
+        verticalLayout->addWidget(transferHistoryWidget);
+
+        emptyLabel = new QLabel(scrollAreaWidgetContents);
         emptyLabel->setObjectName("emptyLabel");
         QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy2.setHorizontalStretch(0);
@@ -157,10 +160,7 @@ public:
         emptyLabel->setFont(font3);
         emptyLabel->setAlignment(Qt::AlignCenter);
 
-        transferHistoryLayout->addWidget(emptyLabel);
-
-
-        verticalLayout->addWidget(transferHistoryWidget);
+        verticalLayout->addWidget(emptyLabel);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 

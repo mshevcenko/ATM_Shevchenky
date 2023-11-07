@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Account">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAAIAAAAAAEA=</HashCode>
+      <FileName>Account.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Card">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Card::Type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Card.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAACAAAAAAAAQAAAAAQACAgAABAAYAAAAAAAAAAAA=</HashCode>
+      <FileName>Card.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Transfer">
+    <Position X="4" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAIAAAAAAAAAAAAAKQgAAwAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Transfer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TransferDaemon">
+    <Position X="5.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAIIAAAAAAAAAAAAAAAgAA0gAAAKAAAAAACAAAAg=</HashCode>
+      <FileName>TransferDaemon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OverflowService">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAgAAgAAACAAAAgAAGAAAAA=</HashCode>
+      <FileName>OverflowService.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OverflowCreditService">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAIEAAAAAAAAAAAAAAgAAwAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>OverflowCreditService.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATM">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAEAAQQIAAAAAABAAAAAAgBAAAAAAAAAEGAAABA=</HashCode>
+      <FileName>ATM.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bank">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AUiAIAAAIAAAjAAEAAAAAAAAAAAAAAAAAIAAAAAAQAA=</HashCode>
+      <FileName>Bank.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WithdrawalService">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAIAAIAAAAAAAAAAAQAAAAAAACAAAABAACAAAAA=</HashCode>
+      <FileName>WithdrawalService.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

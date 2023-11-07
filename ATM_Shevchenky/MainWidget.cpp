@@ -1,8 +1,10 @@
 #include <QMessageBox>
 #include "MainWidget.h"
+#include "ATM.h"
 
-MainWidget::MainWidget(QWidget* parent) :
-    QWidget(parent)
+MainWidget::MainWidget(ATM& atm, QWidget* parent) :
+    QWidget(parent),
+    _atm(atm)
 {
     ui.setupUi(this);
     connect(
@@ -45,6 +47,12 @@ MainWidget::MainWidget(QWidget* parent) :
 
 MainWidget::~MainWidget() {}
 
+void MainWidget::updateData()
+{
+    ui.balanceLineEdit->setText(QString::number(_atm.getBalance(), 'f', 2));
+    ui.creditLimitLineEdit->setText(QString::number(_atm.getCreditLimit(), 'f', 2));
+}
+
 
 void MainWidget::tryPickupCard()
 {
@@ -57,6 +65,7 @@ void MainWidget::tryPickupCard()
     int res = msgBox.exec();
     if(res == QMessageBox::Yes)
     {
+        _atm.exit();
         emit pickupCard();
     }
 }

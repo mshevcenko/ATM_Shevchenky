@@ -41,9 +41,7 @@ public:
         if (Login->objectName().isEmpty())
             Login->setObjectName("Login");
         Login->resize(648, 432);
-        Login->setStyleSheet(QString::fromUtf8("QWidget {\n"
-"	background-color: rgb(240, 240, 240);\n"
-"}"));
+        Login->setStyleSheet(QString::fromUtf8(""));
         horizontalLayout = new QHBoxLayout(Login);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);

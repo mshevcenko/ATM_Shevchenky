@@ -1,7 +1,9 @@
 #include "OverflowWidget.h"
+#include "ATM.h"
 
-OverflowWidget::OverflowWidget(QWidget* parent) :
-    QWidget(parent)
+OverflowWidget::OverflowWidget(ATM& atm, QWidget* parent) :
+    QWidget(parent),
+    _atm(atm)
 {
     ui.setupUi(this);
     connect(
@@ -28,3 +30,9 @@ OverflowWidget::OverflowWidget(QWidget* parent) :
 
 OverflowWidget::~OverflowWidget()
 {}
+
+void OverflowWidget::updateData()
+{
+    ui.balanceLineEdit->setText(QString::number(_atm.getBalance(), 'f', 2));
+    ui.creditLimitLineEdit->setText(QString::number(_atm.getCreditLimit(), 'f', 2));
+}

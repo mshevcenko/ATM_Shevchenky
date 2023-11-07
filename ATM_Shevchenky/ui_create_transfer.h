@@ -199,7 +199,7 @@ public:
         sizePolicy1.setHeightForWidth(ammountToBeSentLineEdit->sizePolicy().hasHeightForWidth());
         ammountToBeSentLineEdit->setSizePolicy(sizePolicy1);
         ammountToBeSentLineEdit->setFont(font4);
-        ammountToBeSentLineEdit->setMaxLength(10);
+        ammountToBeSentLineEdit->setMaxLength(13);
 
         formLayout_3->setWidget(1, QFormLayout::FieldRole, ammountToBeSentLineEdit);
 
@@ -214,7 +214,7 @@ public:
         sizePolicy1.setHeightForWidth(ammountToBeReceivedLineEdit->sizePolicy().hasHeightForWidth());
         ammountToBeReceivedLineEdit->setSizePolicy(sizePolicy1);
         ammountToBeReceivedLineEdit->setFont(font4);
-        ammountToBeReceivedLineEdit->setMaxLength(10);
+        ammountToBeReceivedLineEdit->setMaxLength(13);
 
         formLayout_3->setWidget(2, QFormLayout::FieldRole, ammountToBeReceivedLineEdit);
 

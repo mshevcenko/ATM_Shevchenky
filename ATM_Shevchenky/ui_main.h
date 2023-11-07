@@ -79,10 +79,7 @@ public:
             Main->setObjectName("Main");
         Main->resize(686, 602);
         Main->setMaximumSize(QSize(16777215, 16777215));
-        Main->setStyleSheet(QString::fromUtf8("QWidget {\n"
-"	background-color: rgb(240, 240, 240);\n"
-"}\n"
-""));
+        Main->setStyleSheet(QString::fromUtf8(""));
         verticalLayout_2 = new QVBoxLayout(Main);
         verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout = new QHBoxLayout();

@@ -21,20 +21,107 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
-    <Filter Include="Header Files\widgets">
-      <UniqueIdentifier>{8bbbcdf7-e359-4c63-9ad2-e36f906d853b}</UniqueIdentifier>
+    <Filter Include="Header Files\gui">
+      <UniqueIdentifier>{d62275e1-51e0-4866-b1de-490ee3ca5c40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ui">
+    <Filter Include="Header Files\gui\ui">
       <UniqueIdentifier>{f9745c65-9045-43d2-8577-b13c39cc3524}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\widgets">
-      <UniqueIdentifier>{bb5331f0-7aaf-43a1-80b6-72ee5294aaec}</UniqueIdentifier>
+    <Filter Include="Header Files\gui\widgets">
+      <UniqueIdentifier>{8bbbcdf7-e359-4c63-9ad2-e36f906d853b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\widgets\additional">
+    <Filter Include="Header Files\gui\widgets\additional">
       <UniqueIdentifier>{e48e2e36-a315-40c1-8934-6506200a241f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\widgets\additional">
+    <Filter Include="Source Files\gui">
+      <UniqueIdentifier>{01cc85d2-76f9-48e2-9f4e-47e0cc1bbdfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\widgets">
+      <UniqueIdentifier>{bb5331f0-7aaf-43a1-80b6-72ee5294aaec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\widgets\additional">
       <UniqueIdentifier>{ba350c17-db17-4d71-8150-9fc64be3e92f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\backend">
+      <UniqueIdentifier>{1513c6d0-301d-4a8a-be6f-c05bc8224824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\backend\atm">
+      <UniqueIdentifier>{af88a3fd-7e6d-4780-9eba-884d40e896f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\backend\bank">
+      <UniqueIdentifier>{8d63c870-f7ac-4987-bd70-53b3e0011a93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\backend\models">
+      <UniqueIdentifier>{1ef02432-5a12-4ecd-932d-8fe19427cfe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\backend\services">
+      <UniqueIdentifier>{930aa5d8-5117-4ec5-9449-3c675856a22b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\db">
+      <UniqueIdentifier>{ef69785f-1803-4e15-980d-c2aea786c8d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\db">
+      <UniqueIdentifier>{d2a2290b-6213-4647-be6f-2d8b48dc2a8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\effects">
+      <UniqueIdentifier>{36825ebe-ba1a-401d-a138-ca71a8ab276c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\effects">
+      <UniqueIdentifier>{35cecedf-dd57-4654-8f81-61878b6b2478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\widgets\transfer">
+      <UniqueIdentifier>{f4f19b93-5956-4a08-8f47-b0d3ad0ef588}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\widgets\cards">
+      <UniqueIdentifier>{10f28b03-23b2-4034-bdae-799a0652855a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\widgets\overflow">
+      <UniqueIdentifier>{ed888728-7e13-4b10-b61c-0a3c879afb94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\widgets\login">
+      <UniqueIdentifier>{64f48f80-2a64-4ea9-a100-846ee619f6c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\widgets\main">
+      <UniqueIdentifier>{791e03d8-d3d7-4f4b-a0e2-200b9e1d58f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\widgets\credit_limit">
+      <UniqueIdentifier>{38ff1abf-680a-462c-8cfe-787b95f8c3cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\widgets\transfer_history">
+      <UniqueIdentifier>{2940c993-fa57-4b70-bd49-b29ca0ecf538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\widgets\withdrawal">
+      <UniqueIdentifier>{02a1c098-c8ff-4d5c-8960-93b042fa6920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\util">
+      <UniqueIdentifier>{9f338e4e-e8c6-4280-9dc8-9987d8571075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\widgets\cards">
+      <UniqueIdentifier>{2bfe0fcb-548f-4bf4-8a39-c6eb1e402fde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\widgets\transfer">
+      <UniqueIdentifier>{e47f91f8-41d2-4466-9ce6-d12bcf74a099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\widgets\overflow">
+      <UniqueIdentifier>{6b3f73c0-1c14-4344-aee8-a68db9ff21ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\widgets\credit_limit">
+      <UniqueIdentifier>{c0eccb12-fdec-4a2a-97ea-57381b0d7141}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\widgets\login">
+      <UniqueIdentifier>{e4e46527-f71f-4f5e-9e49-43fe00125509}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\widgets\main">
+      <UniqueIdentifier>{b1bff10f-428d-4da7-bb7d-79749a8ddf6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\widgets\withdrawal">
+      <UniqueIdentifier>{7bada9e8-1fd9-462f-87b9-aa070ed470da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\widgets\transfer_history">
+      <UniqueIdentifier>{e5e338da-f50f-4411-84de-5c93a8c9e3b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\util">
+      <UniqueIdentifier>{4d24df75-d270-45f5-aad1-3f6a35005ef0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -98,197 +185,363 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ui_test_shadow.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_transfer.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_transfer_daemon_card.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_transfer_daemons_list.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_create_transfer.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_create_transfer_daemon.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_main.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_overflow.h">
-      <Filter>Header Files\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_overflow_service.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_transfer_from_card.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_transfer_history.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_withdrawal.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_withdrawal_card.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_create_overflow_credit_service.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_credit_limit.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_overflow_credit_service_card.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_overflow_credit_services_list.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_login.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
     </ClInclude>
     <ClInclude Include="ui_transfer_to_card.h">
-      <Filter>Header Files\ui</Filter>
+      <Filter>Header Files\gui\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Account.h">
+      <Filter>Header Files\backend\models</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Header Files\backend\models</Filter>
+    </ClInclude>
+    <ClInclude Include="MoneyStorage.h">
+      <Filter>Header Files\backend\models</Filter>
+    </ClInclude>
+    <ClInclude Include="Transfer.h">
+      <Filter>Header Files\backend\models</Filter>
+    </ClInclude>
+    <ClInclude Include="TransferDaemon.h">
+      <Filter>Header Files\backend\models</Filter>
+    </ClInclude>
+    <ClInclude Include="WithdrawalService.h">
+      <Filter>Header Files\backend\services</Filter>
+    </ClInclude>
+    <ClInclude Include="OverflowCreditService.h">
+      <Filter>Header Files\backend\services</Filter>
+    </ClInclude>
+    <ClInclude Include="OverflowService.h">
+      <Filter>Header Files\backend\services</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountDao.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="AtmDao.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="BankDao.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="CardDao.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="Database.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="MoneyStorageDao.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="OverflowCreditServiceDao.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="OverflowServiceDao.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="TransferDaemonDao.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="TransferDao.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="WithdrawalServiceDao.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="ATM.h">
+      <Filter>Header Files\backend\atm</Filter>
+    </ClInclude>
+    <ClInclude Include="Bank.h">
+      <Filter>Header Files\backend\bank</Filter>
+    </ClInclude>
+    <ClInclude Include="autil.h">
+      <Filter>Header Files\backend\bank</Filter>
+    </ClInclude>
+    <ClInclude Include="gutil.h">
+      <Filter>Header Files\gui\util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="CreateTransferWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="LoginWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="MainWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="ServiceOptionWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="TransferDaemonCardWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="TransferDaemonsListWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="TransferWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="aspectratiopixmaplabel.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="CreateTransferDaemonWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="customshadoweffect.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="MainWindow.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="ClickableLabel.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="OverflowWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="OverflowServiceWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="WithdrawalWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="CreditLimitWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="TransferHistoryWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="OverflowCreditServicesListWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
-    <QtMoc Include="CreateOverflowCreditServiceWidget.h">
-      <Filter>Header Files\widgets</Filter>
-    </QtMoc>
     <QtMoc Include="MoneyLineEdit.h">
-      <Filter>Header Files\widgets\additional</Filter>
+      <Filter>Header Files\gui\widgets\additional</Filter>
     </QtMoc>
     <QtMoc Include="IntegerLineEdit.h">
-      <Filter>Header Files\widgets\additional</Filter>
+      <Filter>Header Files\gui\widgets\additional</Filter>
+    </QtMoc>
+    <QtMoc Include="ClickableLabel.h">
+      <Filter>Header Files\gui\widgets\additional</Filter>
+    </QtMoc>
+    <QtMoc Include="ServiceOptionWidget.h">
+      <Filter>Header Files\gui\widgets\additional</Filter>
+    </QtMoc>
+    <QtMoc Include="MainWindow.h">
+      <Filter>Header Files\gui</Filter>
+    </QtMoc>
+    <QtMoc Include="aspectratiopixmaplabel.h">
+      <Filter>Header Files\gui\widgets\additional</Filter>
+    </QtMoc>
+    <QtMoc Include="customshadoweffect.h">
+      <Filter>Header Files\gui\effects</Filter>
+    </QtMoc>
+    <QtMoc Include="TransferDaemonCardWidget.h">
+      <Filter>Header Files\gui\widgets\cards</Filter>
+    </QtMoc>
+    <QtMoc Include="CreateTransferDaemonWidget.h">
+      <Filter>Header Files\gui\widgets\transfer</Filter>
+    </QtMoc>
+    <QtMoc Include="CreateTransferWidget.h">
+      <Filter>Header Files\gui\widgets\transfer</Filter>
+    </QtMoc>
+    <QtMoc Include="TransferWidget.h">
+      <Filter>Header Files\gui\widgets\transfer</Filter>
+    </QtMoc>
+    <QtMoc Include="TransferDaemonsListWidget.h">
+      <Filter>Header Files\gui\widgets\transfer</Filter>
+    </QtMoc>
+    <QtMoc Include="OverflowWidget.h">
+      <Filter>Header Files\gui\widgets\overflow</Filter>
+    </QtMoc>
+    <QtMoc Include="OverflowServiceWidget.h">
+      <Filter>Header Files\gui\widgets\overflow</Filter>
+    </QtMoc>
+    <QtMoc Include="CreateOverflowCreditServiceWidget.h">
+      <Filter>Header Files\gui\widgets\overflow</Filter>
+    </QtMoc>
+    <QtMoc Include="OverflowCreditServicesListWidget.h">
+      <Filter>Header Files\gui\widgets\overflow</Filter>
+    </QtMoc>
+    <QtMoc Include="LoginWidget.h">
+      <Filter>Header Files\gui\widgets\login</Filter>
+    </QtMoc>
+    <QtMoc Include="MainWidget.h">
+      <Filter>Header Files\gui\widgets\main</Filter>
+    </QtMoc>
+    <QtMoc Include="CreditLimitWidget.h">
+      <Filter>Header Files\gui\widgets\credit_limit</Filter>
+    </QtMoc>
+    <QtMoc Include="TransferHistoryWidget.h">
+      <Filter>Header Files\gui\widgets\transfer_history</Filter>
+    </QtMoc>
+    <QtMoc Include="WithdrawalWidget.h">
+      <Filter>Header Files\gui\widgets\withdrawal</Filter>
+    </QtMoc>
+    <QtMoc Include="OverflowCreditServiceCardWidget.h">
+      <Filter>Header Files\gui\widgets\cards</Filter>
+    </QtMoc>
+    <QtMoc Include="TransferToCardWidget.h">
+      <Filter>Header Files\gui\widgets\cards</Filter>
+    </QtMoc>
+    <QtMoc Include="TransferFromCardWidget.h">
+      <Filter>Header Files\gui\widgets\cards</Filter>
+    </QtMoc>
+    <QtMoc Include="WithdrawalCardWidget.h">
+      <Filter>Header Files\gui\widgets\cards</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CreateTransferWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
+    <ClCompile Include="MoneyLineEdit.cpp">
+      <Filter>Source Files\gui\widgets\additional</Filter>
     </ClCompile>
-    <ClCompile Include="MainWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="ServiceOptionWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="TransferDaemonCardWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="TransferDaemonsListWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="TransferWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="aspectratiopixmaplabel.cpp">
-      <Filter>Source Files\widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="CreateTransferDaemonWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
+    <ClCompile Include="IntegerLineEdit.cpp">
+      <Filter>Source Files\gui\widgets\additional</Filter>
     </ClCompile>
     <ClCompile Include="MainWindow.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\gui</Filter>
     </ClCompile>
-    <ClCompile Include="customshadoweffect.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="aspectratiopixmaplabel.cpp">
+      <Filter>Source Files\gui\widgets\additional</Filter>
+    </ClCompile>
+    <ClCompile Include="ClickableLabel.cpp">
+      <Filter>Source Files\gui\widgets\additional</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LoginWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
+    <ClCompile Include="Account.cpp">
+      <Filter>Header Files\backend\models</Filter>
     </ClCompile>
-    <ClCompile Include="ClickableLabel.cpp">
-      <Filter>Source Files\widgets</Filter>
+    <ClCompile Include="Card.cpp">
+      <Filter>Header Files\backend\models</Filter>
     </ClCompile>
-    <ClCompile Include="OverflowWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
+    <ClCompile Include="MoneyStorage.cpp">
+      <Filter>Header Files\backend\models</Filter>
     </ClCompile>
-    <ClCompile Include="OverflowServiceWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
+    <ClCompile Include="Transfer.cpp">
+      <Filter>Header Files\backend\models</Filter>
+    </ClCompile>
+    <ClCompile Include="TransferDaemon.cpp">
+      <Filter>Header Files\backend\models</Filter>
+    </ClCompile>
+    <ClCompile Include="WithdrawalService.cpp">
+      <Filter>Header Files\backend\services</Filter>
+    </ClCompile>
+    <ClCompile Include="OverflowCreditService.cpp">
+      <Filter>Header Files\backend\services</Filter>
+    </ClCompile>
+    <ClCompile Include="OverflowService.cpp">
+      <Filter>Header Files\backend\services</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountDao.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="AtmDao.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="BankDao.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="CardDao.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="Database.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="MoneyStorageDao.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="OverflowCreditServiceDao.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="OverflowServiceDao.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="TransferDaemonDao.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="TransferDao.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="WithdrawalServiceDao.cpp">
+      <Filter>Source Files\db</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite\shell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite\sqlite3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ATM.cpp">
+      <Filter>Header Files\backend\atm</Filter>
+    </ClCompile>
+    <ClCompile Include="Bank.cpp">
+      <Filter>Header Files\backend\bank</Filter>
+    </ClCompile>
+    <ClCompile Include="customshadoweffect.cpp">
+      <Filter>Source Files\gui\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceOptionWidget.cpp">
+      <Filter>Source Files\gui\widgets\additional</Filter>
+    </ClCompile>
+    <ClCompile Include="TransferDaemonCardWidget.cpp">
+      <Filter>Source Files\gui\widgets\cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateTransferDaemonWidget.cpp">
+      <Filter>Source Files\gui\widgets\transfer</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateTransferWidget.cpp">
+      <Filter>Source Files\gui\widgets\transfer</Filter>
+    </ClCompile>
+    <ClCompile Include="TransferWidget.cpp">
+      <Filter>Source Files\gui\widgets\transfer</Filter>
+    </ClCompile>
+    <ClCompile Include="TransferDaemonsListWidget.cpp">
+      <Filter>Source Files\gui\widgets\transfer</Filter>
     </ClCompile>
     <ClCompile Include="CreateOverflowCreditServiceWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
+      <Filter>Source Files\gui\widgets\overflow</Filter>
+    </ClCompile>
+    <ClCompile Include="OverflowServiceWidget.cpp">
+      <Filter>Source Files\gui\widgets\overflow</Filter>
     </ClCompile>
     <ClCompile Include="OverflowCreditServicesListWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
+      <Filter>Source Files\gui\widgets\overflow</Filter>
     </ClCompile>
-    <ClCompile Include="TransferHistoryWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="WithdrawalWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
+    <ClCompile Include="OverflowWidget.cpp">
+      <Filter>Source Files\gui\widgets\overflow</Filter>
     </ClCompile>
     <ClCompile Include="CreditLimitWidget.cpp">
-      <Filter>Source Files\widgets</Filter>
+      <Filter>Source Files\gui\widgets\credit_limit</Filter>
     </ClCompile>
-    <ClCompile Include="MoneyLineEdit.cpp">
-      <Filter>Source Files\widgets\additional</Filter>
+    <ClCompile Include="LoginWidget.cpp">
+      <Filter>Source Files\gui\widgets\login</Filter>
     </ClCompile>
-    <ClCompile Include="IntegerLineEdit.cpp">
-      <Filter>Source Files\widgets\additional</Filter>
+    <ClCompile Include="MainWidget.cpp">
+      <Filter>Source Files\gui\widgets\main</Filter>
     </ClCompile>
+    <ClCompile Include="WithdrawalWidget.cpp">
+      <Filter>Source Files\gui\widgets\withdrawal</Filter>
+    </ClCompile>
+    <ClCompile Include="TransferHistoryWidget.cpp">
+      <Filter>Source Files\gui\widgets\transfer_history</Filter>
+    </ClCompile>
+    <ClCompile Include="gutil.cpp">
+      <Filter>Source Files\gui\util</Filter>
+    </ClCompile>
+    <ClCompile Include="OverflowCreditServiceCardWidget.cpp">
+      <Filter>Source Files\gui\widgets\cards</Filter>
+    </ClCompile>
+    <ClCompile Include="WithdrawalCardWidget.cpp">
+      <Filter>Source Files\gui\widgets\cards</Filter>
+    </ClCompile>
+    <ClCompile Include="TransferToCardWidget.cpp">
+      <Filter>Source Files\gui\widgets\cards</Filter>
+    </ClCompile>
+    <ClCompile Include="TransferFromCardWidget.cpp">
+      <Filter>Source Files\gui\widgets\cards</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

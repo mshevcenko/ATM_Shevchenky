@@ -29,12 +29,14 @@ public:
     QLineEdit *toLineEdit;
     QLabel *ammountLabel;
     QLineEdit *ammountLineEdit;
+    QLabel *dateLabel;
+    QLineEdit *dateLineEdit;
 
     void setupUi(QWidget *TransferToCard)
     {
         if (TransferToCard->objectName().isEmpty())
             TransferToCard->setObjectName("TransferToCard");
-        TransferToCard->resize(715, 62);
+        TransferToCard->resize(715, 58);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -104,6 +106,18 @@ public:
 
         horizontalLayout->addWidget(ammountLineEdit);
 
+        dateLabel = new QLabel(widget);
+        dateLabel->setObjectName("dateLabel");
+        dateLabel->setFont(font);
+
+        horizontalLayout->addWidget(dateLabel);
+
+        dateLineEdit = new QLineEdit(widget);
+        dateLineEdit->setObjectName("dateLineEdit");
+        dateLineEdit->setFont(font);
+
+        horizontalLayout->addWidget(dateLineEdit);
+
 
         horizontalLayout_2->addWidget(widget);
 
@@ -120,6 +134,7 @@ public:
         toLabel->setText(QCoreApplication::translate("TransferToCard", "To:", nullptr));
         toLineEdit->setText(QCoreApplication::translate("TransferToCard", "1234567890123456", nullptr));
         ammountLabel->setText(QCoreApplication::translate("TransferToCard", "Ammount:", nullptr));
+        dateLabel->setText(QCoreApplication::translate("TransferToCard", "Date:", nullptr));
     } // retranslateUi
 
 };

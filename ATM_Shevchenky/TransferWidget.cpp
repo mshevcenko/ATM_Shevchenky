@@ -1,7 +1,9 @@
 #include "TransferWidget.h"
+#include "ATM.h"
 
-TransferWidget::TransferWidget(QWidget* parent) :
-    QWidget(parent)
+TransferWidget::TransferWidget(ATM& atm, QWidget* parent) :
+    QWidget(parent),
+    _atm(atm)
 {
     ui.setupUi(this);
     connect(
@@ -27,3 +29,9 @@ TransferWidget::TransferWidget(QWidget* parent) :
 
 TransferWidget::~TransferWidget()
 {}
+
+void TransferWidget::updateData()
+{
+    ui.balanceLineEdit->setText(QString::number(_atm.getBalance(), 'f', 2));
+    ui.creditLimitLineEdit->setText(QString::number(_atm.getCreditLimit(), 'f', 2));
+}

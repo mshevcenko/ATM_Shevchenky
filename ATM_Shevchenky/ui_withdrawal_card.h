@@ -27,6 +27,8 @@ public:
     QLabel *withdrawalImage;
     QLabel *ammountLabel;
     QLineEdit *ammountLineEdit;
+    QLabel *dateLabel;
+    QLineEdit *dateLineEdit;
 
     void setupUi(QWidget *WithdrawalCard)
     {
@@ -87,6 +89,18 @@ public:
 
         horizontalLayout->addWidget(ammountLineEdit);
 
+        dateLabel = new QLabel(widget);
+        dateLabel->setObjectName("dateLabel");
+        dateLabel->setFont(font);
+
+        horizontalLayout->addWidget(dateLabel);
+
+        dateLineEdit = new QLineEdit(widget);
+        dateLineEdit->setObjectName("dateLineEdit");
+        dateLineEdit->setFont(font);
+
+        horizontalLayout->addWidget(dateLineEdit);
+
 
         horizontalLayout_2->addWidget(widget);
 
@@ -101,6 +115,7 @@ public:
         WithdrawalCard->setWindowTitle(QCoreApplication::translate("WithdrawalCard", "Form", nullptr));
         withdrawalImage->setText(QString());
         ammountLabel->setText(QCoreApplication::translate("WithdrawalCard", "Ammount:", nullptr));
+        dateLabel->setText(QCoreApplication::translate("WithdrawalCard", "Date:", nullptr));
     } // retranslateUi
 
 };

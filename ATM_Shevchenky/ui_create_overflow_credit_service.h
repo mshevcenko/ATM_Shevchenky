@@ -14,7 +14,6 @@
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
@@ -35,8 +34,6 @@ public:
     MoneyLineEdit *balanceLineEdit;
     QLabel *creditLimitLabel;
     MoneyLineEdit *creditLimitLineEdit;
-    QLabel *commissionLabel;
-    QLineEdit *commissionLineEdit;
     QSpacerItem *horizontalSpacer_6;
     ClickableLabel *closeButton;
     QHBoxLayout *horizontalLayout_3;
@@ -47,11 +44,9 @@ public:
     QFormLayout *formLayout_3;
     QLabel *targetLabel;
     IntegerLineEdit *targetLineEdit;
-    QLabel *ammountToBeSentLabel;
-    MoneyLineEdit *ammountToBeSentLineEdit;
     QLabel *ammountToBeReceivedLabel;
-    MoneyLineEdit *ammountToBeReceivedLineEdit;
-    QPushButton *transferButton_2;
+    MoneyLineEdit *ammountToBeTriggeredLineEdit;
+    QPushButton *createButton;
     QSpacerItem *verticalSpacer_4;
     QSpacerItem *horizontalSpacer_5;
 
@@ -108,22 +103,6 @@ public:
         creditLimitLineEdit->setReadOnly(true);
 
         formLayout_4->setWidget(1, QFormLayout::FieldRole, creditLimitLineEdit);
-
-        commissionLabel = new QLabel(CreateOverflowCreditService);
-        commissionLabel->setObjectName("commissionLabel");
-        commissionLabel->setFont(font);
-
-        formLayout_4->setWidget(2, QFormLayout::LabelRole, commissionLabel);
-
-        commissionLineEdit = new QLineEdit(CreateOverflowCreditService);
-        commissionLineEdit->setObjectName("commissionLineEdit");
-        sizePolicy.setHeightForWidth(commissionLineEdit->sizePolicy().hasHeightForWidth());
-        commissionLineEdit->setSizePolicy(sizePolicy);
-        commissionLineEdit->setFont(font2);
-        commissionLineEdit->setMaxLength(32765);
-        commissionLineEdit->setReadOnly(true);
-
-        formLayout_4->setWidget(2, QFormLayout::FieldRole, commissionLineEdit);
 
 
         horizontalLayout_4->addLayout(formLayout_4);
@@ -188,49 +167,34 @@ public:
 
         formLayout_3->setWidget(0, QFormLayout::FieldRole, targetLineEdit);
 
-        ammountToBeSentLabel = new QLabel(CreateOverflowCreditService);
-        ammountToBeSentLabel->setObjectName("ammountToBeSentLabel");
-        ammountToBeSentLabel->setFont(font4);
-
-        formLayout_3->setWidget(1, QFormLayout::LabelRole, ammountToBeSentLabel);
-
-        ammountToBeSentLineEdit = new MoneyLineEdit(CreateOverflowCreditService);
-        ammountToBeSentLineEdit->setObjectName("ammountToBeSentLineEdit");
-        sizePolicy1.setHeightForWidth(ammountToBeSentLineEdit->sizePolicy().hasHeightForWidth());
-        ammountToBeSentLineEdit->setSizePolicy(sizePolicy1);
-        ammountToBeSentLineEdit->setFont(font4);
-        ammountToBeSentLineEdit->setMaxLength(16);
-
-        formLayout_3->setWidget(1, QFormLayout::FieldRole, ammountToBeSentLineEdit);
-
         ammountToBeReceivedLabel = new QLabel(CreateOverflowCreditService);
         ammountToBeReceivedLabel->setObjectName("ammountToBeReceivedLabel");
         ammountToBeReceivedLabel->setFont(font4);
 
-        formLayout_3->setWidget(2, QFormLayout::LabelRole, ammountToBeReceivedLabel);
+        formLayout_3->setWidget(1, QFormLayout::LabelRole, ammountToBeReceivedLabel);
 
-        ammountToBeReceivedLineEdit = new MoneyLineEdit(CreateOverflowCreditService);
-        ammountToBeReceivedLineEdit->setObjectName("ammountToBeReceivedLineEdit");
-        sizePolicy1.setHeightForWidth(ammountToBeReceivedLineEdit->sizePolicy().hasHeightForWidth());
-        ammountToBeReceivedLineEdit->setSizePolicy(sizePolicy1);
-        ammountToBeReceivedLineEdit->setFont(font4);
-        ammountToBeReceivedLineEdit->setMaxLength(16);
+        ammountToBeTriggeredLineEdit = new MoneyLineEdit(CreateOverflowCreditService);
+        ammountToBeTriggeredLineEdit->setObjectName("ammountToBeTriggeredLineEdit");
+        sizePolicy1.setHeightForWidth(ammountToBeTriggeredLineEdit->sizePolicy().hasHeightForWidth());
+        ammountToBeTriggeredLineEdit->setSizePolicy(sizePolicy1);
+        ammountToBeTriggeredLineEdit->setFont(font4);
+        ammountToBeTriggeredLineEdit->setMaxLength(16);
 
-        formLayout_3->setWidget(2, QFormLayout::FieldRole, ammountToBeReceivedLineEdit);
+        formLayout_3->setWidget(1, QFormLayout::FieldRole, ammountToBeTriggeredLineEdit);
 
 
         verticalLayout_2->addLayout(formLayout_3);
 
-        transferButton_2 = new QPushButton(CreateOverflowCreditService);
-        transferButton_2->setObjectName("transferButton_2");
+        createButton = new QPushButton(CreateOverflowCreditService);
+        createButton->setObjectName("createButton");
         QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(transferButton_2->sizePolicy().hasHeightForWidth());
-        transferButton_2->setSizePolicy(sizePolicy2);
-        transferButton_2->setMinimumSize(QSize(160, 60));
-        transferButton_2->setFont(font3);
-        transferButton_2->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        sizePolicy2.setHeightForWidth(createButton->sizePolicy().hasHeightForWidth());
+        createButton->setSizePolicy(sizePolicy2);
+        createButton->setMinimumSize(QSize(160, 60));
+        createButton->setFont(font3);
+        createButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "	color: white;\n"
 "	background-color: rgb(100, 100, 100);\n"
 "	border-radius: 10px;\n"
@@ -240,7 +204,7 @@ public:
 "	background-color: rgb(50, 50, 50);\n"
 "}"));
 
-        verticalLayout_2->addWidget(transferButton_2, 0, Qt::AlignHCenter|Qt::AlignVCenter);
+        verticalLayout_2->addWidget(createButton, 0, Qt::AlignHCenter|Qt::AlignVCenter);
 
         verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -269,8 +233,6 @@ public:
         balanceLineEdit->setText(QCoreApplication::translate("CreateOverflowCreditService", "0", nullptr));
         creditLimitLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Credit Limit:", nullptr));
         creditLimitLineEdit->setText(QCoreApplication::translate("CreateOverflowCreditService", "0", nullptr));
-        commissionLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Commission:", nullptr));
-        commissionLineEdit->setText(QCoreApplication::translate("CreateOverflowCreditService", "0", nullptr));
         closeButton->setText(QString());
 #if QT_CONFIG(tooltip)
         createOverflowCreditServiceLabel->setToolTip(QString());
@@ -278,9 +240,8 @@ public:
         createOverflowCreditServiceLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Create Overflow Credit Service", nullptr));
         targetLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Target:", nullptr));
         targetLineEdit->setText(QCoreApplication::translate("CreateOverflowCreditService", "1234567890123456", nullptr));
-        ammountToBeSentLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Ammount to be sent:", nullptr));
-        ammountToBeReceivedLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Ammount to be received:", nullptr));
-        transferButton_2->setText(QCoreApplication::translate("CreateOverflowCreditService", "CREATE", nullptr));
+        ammountToBeReceivedLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Ammount to be triggered:", nullptr));
+        createButton->setText(QCoreApplication::translate("CreateOverflowCreditService", "CREATE", nullptr));
     } // retranslateUi
 
 };

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>652</width>
+    <width>701</width>
     <height>504</height>
    </rect>
   </property>
@@ -255,16 +255,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Next Transfer Date:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QDateTimeEdit" name="nextTransferDateTimeEdit">
-           <property name="font">
-            <font>
-             <pointsize>13</pointsize>
-            </font>
+            <string>Next Transfer Day:</string>
            </property>
           </widget>
          </item>
@@ -333,7 +324,7 @@
             </font>
            </property>
            <property name="maxLength">
-            <number>10</number>
+            <number>13</number>
            </property>
           </widget>
          </item>
@@ -363,7 +354,22 @@
             </font>
            </property>
            <property name="maxLength">
-            <number>10</number>
+            <number>13</number>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QDateEdit" name="nextTransferDayEdit">
+           <property name="font">
+            <font>
+             <pointsize>13</pointsize>
+            </font>
+           </property>
+           <property name="showGroupSeparator" stdset="0">
+            <bool>false</bool>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
            </property>
           </widget>
          </item>

@@ -16,6 +16,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QWidget>
+#include "ClickableLabel.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -31,7 +32,7 @@ public:
     QLabel *ammountLabel;
     QLineEdit *ammountLineEdit;
     QSpacerItem *horizontalSpacer;
-    QLabel *label_2;
+    ClickableLabel *deleteLabel;
 
     void setupUi(QWidget *OverflowCreditServiceCard)
     {
@@ -98,23 +99,23 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        label_2 = new QLabel(widget);
-        label_2->setObjectName("label_2");
+        deleteLabel = new ClickableLabel(widget);
+        deleteLabel->setObjectName("deleteLabel");
         QSizePolicy sizePolicy1(QSizePolicy::Maximum, QSizePolicy::Maximum);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
-        label_2->setSizePolicy(sizePolicy1);
-        label_2->setMinimumSize(QSize(0, 0));
-        label_2->setMaximumSize(QSize(40, 40));
-        label_2->setSizeIncrement(QSize(0, 0));
-        label_2->setStyleSheet(QString::fromUtf8("QLabel:hover {\n"
+        sizePolicy1.setHeightForWidth(deleteLabel->sizePolicy().hasHeightForWidth());
+        deleteLabel->setSizePolicy(sizePolicy1);
+        deleteLabel->setMinimumSize(QSize(0, 0));
+        deleteLabel->setMaximumSize(QSize(40, 40));
+        deleteLabel->setSizeIncrement(QSize(0, 0));
+        deleteLabel->setStyleSheet(QString::fromUtf8("QLabel:hover {\n"
 "	filter: brightness(50%);\n"
 "}"));
-        label_2->setPixmap(QPixmap(QString::fromUtf8("assets/images/trash-bin.png")));
-        label_2->setScaledContents(true);
+        deleteLabel->setPixmap(QPixmap(QString::fromUtf8("assets/images/trash-bin.png")));
+        deleteLabel->setScaledContents(true);
 
-        horizontalLayout->addWidget(label_2);
+        horizontalLayout->addWidget(deleteLabel);
 
 
         horizontalLayout_3->addWidget(widget);
@@ -130,8 +131,8 @@ public:
         OverflowCreditServiceCard->setWindowTitle(QCoreApplication::translate("OverflowCreditServiceCard", "Form", nullptr));
         targetLabel->setText(QCoreApplication::translate("OverflowCreditServiceCard", "Target:", nullptr));
         targetLineEdit->setText(QCoreApplication::translate("OverflowCreditServiceCard", "1234567890123456", nullptr));
-        ammountLabel->setText(QCoreApplication::translate("OverflowCreditServiceCard", "Ammount:", nullptr));
-        label_2->setText(QString());
+        ammountLabel->setText(QCoreApplication::translate("OverflowCreditServiceCard", "Amount:", nullptr));
+        deleteLabel->setText(QString());
     } // retranslateUi
 
 };

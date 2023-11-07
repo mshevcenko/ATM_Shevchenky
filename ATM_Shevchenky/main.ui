@@ -20,9 +20,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget {
-	background-color: rgb(240, 240, 240);
-}
+   <string notr="true">
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">

@@ -279,7 +279,7 @@
             </font>
            </property>
            <property name="maxLength">
-            <number>10</number>
+            <number>13</number>
            </property>
           </widget>
          </item>
@@ -309,7 +309,7 @@
             </font>
            </property>
            <property name="maxLength">
-            <number>10</number>
+            <number>13</number>
            </property>
           </widget>
          </item>

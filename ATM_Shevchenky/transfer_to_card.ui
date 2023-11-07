@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>715</width>
-    <height>62</height>
+    <height>58</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -158,6 +158,27 @@
         </property>
         <property name="readOnly">
          <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="dateLabel">
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Date:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="dateLineEdit">
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
         </property>
        </widget>
       </item>

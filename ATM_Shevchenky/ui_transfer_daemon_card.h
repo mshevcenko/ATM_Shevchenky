@@ -17,6 +17,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "ClickableLabel.h"
 #include "IntegerLineEdit.h"
 
 QT_BEGIN_NAMESPACE
@@ -34,12 +35,12 @@ public:
     QLabel *ammountLabel;
     QLineEdit *ammountLineEdit;
     QHBoxLayout *horizontalLayout_3;
-    QLabel *nextTransferDateLabel;
-    QLineEdit *lineEdit;
+    QLabel *nextTransferDayLabel;
+    QLineEdit *nextTransferDayLineEdit;
     QLabel *frequencyLabel;
-    QLineEdit *lineEdit_2;
+    QLineEdit *frequencyLineEdit;
     QCheckBox *activeCheckBox;
-    QLabel *label_2;
+    ClickableLabel *deleteLabel;
 
     void setupUi(QWidget *TransferDaemonCardWidgetClass)
     {
@@ -113,19 +114,19 @@ public:
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        nextTransferDateLabel = new QLabel(widget);
-        nextTransferDateLabel->setObjectName("nextTransferDateLabel");
-        nextTransferDateLabel->setFont(font);
+        nextTransferDayLabel = new QLabel(widget);
+        nextTransferDayLabel->setObjectName("nextTransferDayLabel");
+        nextTransferDayLabel->setFont(font);
 
-        horizontalLayout_3->addWidget(nextTransferDateLabel);
+        horizontalLayout_3->addWidget(nextTransferDayLabel);
 
-        lineEdit = new QLineEdit(widget);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setMinimumSize(QSize(100, 0));
-        lineEdit->setFont(font);
-        lineEdit->setReadOnly(true);
+        nextTransferDayLineEdit = new QLineEdit(widget);
+        nextTransferDayLineEdit->setObjectName("nextTransferDayLineEdit");
+        nextTransferDayLineEdit->setMinimumSize(QSize(100, 0));
+        nextTransferDayLineEdit->setFont(font);
+        nextTransferDayLineEdit->setReadOnly(true);
 
-        horizontalLayout_3->addWidget(lineEdit);
+        horizontalLayout_3->addWidget(nextTransferDayLineEdit);
 
         frequencyLabel = new QLabel(widget);
         frequencyLabel->setObjectName("frequencyLabel");
@@ -133,14 +134,14 @@ public:
 
         horizontalLayout_3->addWidget(frequencyLabel);
 
-        lineEdit_2 = new QLineEdit(widget);
-        lineEdit_2->setObjectName("lineEdit_2");
-        lineEdit_2->setMinimumSize(QSize(100, 0));
-        lineEdit_2->setFont(font);
-        lineEdit_2->setStyleSheet(QString::fromUtf8(""));
-        lineEdit_2->setReadOnly(true);
+        frequencyLineEdit = new QLineEdit(widget);
+        frequencyLineEdit->setObjectName("frequencyLineEdit");
+        frequencyLineEdit->setMinimumSize(QSize(100, 0));
+        frequencyLineEdit->setFont(font);
+        frequencyLineEdit->setStyleSheet(QString::fromUtf8(""));
+        frequencyLineEdit->setReadOnly(true);
 
-        horizontalLayout_3->addWidget(lineEdit_2);
+        horizontalLayout_3->addWidget(frequencyLineEdit);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
@@ -161,23 +162,23 @@ public:
 
         horizontalLayout->addWidget(activeCheckBox);
 
-        label_2 = new QLabel(widget);
-        label_2->setObjectName("label_2");
+        deleteLabel = new ClickableLabel(widget);
+        deleteLabel->setObjectName("deleteLabel");
         QSizePolicy sizePolicy2(QSizePolicy::Maximum, QSizePolicy::Maximum);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
-        label_2->setSizePolicy(sizePolicy2);
-        label_2->setMinimumSize(QSize(0, 0));
-        label_2->setMaximumSize(QSize(40, 40));
-        label_2->setSizeIncrement(QSize(0, 0));
-        label_2->setStyleSheet(QString::fromUtf8("QLabel:hover {\n"
+        sizePolicy2.setHeightForWidth(deleteLabel->sizePolicy().hasHeightForWidth());
+        deleteLabel->setSizePolicy(sizePolicy2);
+        deleteLabel->setMinimumSize(QSize(0, 0));
+        deleteLabel->setMaximumSize(QSize(40, 40));
+        deleteLabel->setSizeIncrement(QSize(0, 0));
+        deleteLabel->setStyleSheet(QString::fromUtf8("QLabel:hover {\n"
 "	filter: brightness(50%);\n"
 "}"));
-        label_2->setPixmap(QPixmap(QString::fromUtf8("assets/images/trash-bin.png")));
-        label_2->setScaledContents(true);
+        deleteLabel->setPixmap(QPixmap(QString::fromUtf8("assets/images/trash-bin.png")));
+        deleteLabel->setScaledContents(true);
 
-        horizontalLayout->addWidget(label_2);
+        horizontalLayout->addWidget(deleteLabel);
 
 
         horizontalLayout_4->addWidget(widget);
@@ -193,12 +194,12 @@ public:
         TransferDaemonCardWidgetClass->setWindowTitle(QCoreApplication::translate("TransferDaemonCardWidgetClass", "TransferDaemonCardWidget", nullptr));
         targetLabel->setText(QCoreApplication::translate("TransferDaemonCardWidgetClass", "Target:", nullptr));
         targetLineEdit->setText(QCoreApplication::translate("TransferDaemonCardWidgetClass", "1234567890123456", nullptr));
-        ammountLabel->setText(QCoreApplication::translate("TransferDaemonCardWidgetClass", "Ammount:", nullptr));
-        nextTransferDateLabel->setText(QCoreApplication::translate("TransferDaemonCardWidgetClass", "Next Transfer Date:", nullptr));
+        ammountLabel->setText(QCoreApplication::translate("TransferDaemonCardWidgetClass", "Amount:", nullptr));
+        nextTransferDayLabel->setText(QCoreApplication::translate("TransferDaemonCardWidgetClass", "Next Transfer Day:", nullptr));
         frequencyLabel->setText(QCoreApplication::translate("TransferDaemonCardWidgetClass", "Frequency:", nullptr));
-        lineEdit_2->setText(QCoreApplication::translate("TransferDaemonCardWidgetClass", "2132435647568764", nullptr));
+        frequencyLineEdit->setText(QCoreApplication::translate("TransferDaemonCardWidgetClass", "2132435647568764", nullptr));
         activeCheckBox->setText(QCoreApplication::translate("TransferDaemonCardWidgetClass", "Active", nullptr));
-        label_2->setText(QString());
+        deleteLabel->setText(QString());
     } // retranslateUi
 
 };
