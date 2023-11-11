@@ -2,17 +2,6 @@
 #include "autil.h"
 #include "Bank.h"
 
-//Card::Card(const CardNumber& cardNumber, const string& pincode, const time_t& expiryDate, Type type) : 
-//	_cardNumber(cardNumber), _pincode(pincode), _expiryDate(expiryDate), _type(type), _account(0, 0) {
-//
-//	//Account init is TMP
-//
-//}
-
-//Card::~Card() {
-//
-//}
-
 Card::Card(const string& cardNumber) : Card(cardNumber, string("1234"), 0, 0, Card::Type::Credit) { }
 Card::Card(const string& cardNumber, const string& pincode, const size_t& accountId, const time_t& expiryDate, const Type& type) :
 	_cardNumber(cardNumber), _pincode(pincode), _accountId(accountId), _expiryDate(expiryDate), _type(type), _account(Toolbox::getToolbox().g_AccountDao().getById(accountId)) { }

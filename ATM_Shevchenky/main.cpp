@@ -3,12 +3,14 @@
 #include <QtWidgets/QVBoxLayout>
 #include <iostream>
 #include <string>
+#include <cassert>
 #include "MainWindow.h"
 #include "TransferDaemonCardWidget.h"
 #include "Windows.h"
 #include "Wincon.h"
 #include "ATM.h"
 #include "autil.h"
+#include "Tests.h"
 
 using namespace std;
 
@@ -28,12 +30,26 @@ void Console()
 
 int main(int argc, char *argv[])
 {
-    //Console();
+    Console();
     //1234567890876543
     //1234
+    //assert(
+    //theTest();
+        //);
+    Toolbox::setCurrentDate(time(nullptr));
+    Toolbox::setOneDay(86400);
     QApplication a(argc, argv);
     ATM atm = copyAndDeletePointer(ATM::getAtmWithMoneyStorage(1));
     MainWindow mainWindow(atm);
     mainWindow.show();
+    /*TransferDaemon t(
+        "1234567890876543",
+        "0000000000000000",
+        100.0,
+        time(nullptr),
+        86400,
+        true
+    );
+    cout << boolalpha << Toolbox::getToolbox().g_TransferDaemonDao().create(t) << endl;*/
     return a.exec();
 }

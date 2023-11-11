@@ -60,6 +60,7 @@
     <QtMoc Include="TransferFromCardWidget.h" />
     <QtMoc Include="TransferToCardWidget.h" />
     <QtMoc Include="WithdrawalCardWidget.h" />
+    <ClInclude Include="Tests.h" />
     <ClInclude Include="WithdrawalService.h" />
     <ClInclude Include="WithdrawalServiceDao.h" />
     <QtMoc Include="WithdrawalWidget.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="ServiceOptionWidget.cpp" />
     <ClCompile Include="sqlite\shell.c" />
     <ClCompile Include="sqlite\sqlite3.c" />
+    <ClCompile Include="Tests.cpp" />
     <ClCompile Include="Transfer.cpp" />
     <ClCompile Include="TransferDaemon.cpp" />
     <ClCompile Include="TransferDaemonCardWidget.cpp" />

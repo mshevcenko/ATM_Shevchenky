@@ -9,6 +9,7 @@
 #include "Transfer.h"
 #include "TransferDaemon.h"
 #include "WithdrawalService.h"
+
 class MoneyStorage;
 
 using namespace std;
@@ -34,11 +35,11 @@ private:
 	void doWithdrawalService(WithdrawalService ss);
 public:
 	ATM(const Bank&);
+	~ATM();
 	ATM(const size_t& bankId);
 	ATM(const size_t& id, const size_t& bankId);
 	ATM(const size_t& id, const size_t& bankId, const map<Currency, unsigned int>& currencyStorage);
 	ATM(const ATM& ss);
-	~ATM();
 
 	inline const size_t& id() const {
 		return _id;
@@ -87,13 +88,13 @@ public:
 	vector<Transfer> getTransfers();// returns all transfers incoming(without commision) and outcoming
 	vector<WithdrawalService> getWithdrawalServices();
 	bool createTransfer(Transfer transfer);// only to and (ammount with commision)
-	bool createTransferDaemon(const TransferDaemon& transferDaemon);// all except id
+	bool createTransferDaemon(TransferDaemon transferDaemon);// all except id
 	double getCommission();
 	double calculateFeeSend(double money);
 	double calculateFeeReceived(double money);
 	vector<TransferDaemon> getTransferDaemons();
-	bool editTransfer(const TransferDaemon&);
-	bool deleteTransfer(const TransferDaemon&);
+	bool editTransferDaemon(const TransferDaemon&);
+	bool deleteTransferDaemon(const TransferDaemon&);
 
 	bool createCardAndAccount(const string& cardNumber, const string& pinCode, double balance, time_t expiryDate, const size_t bankId);
 	void nextDay();
@@ -105,7 +106,6 @@ public:
 	/*int provideMoney(Money money);*/
 	void saveToDB();
 	void doIncasators();
-
 
 
 	static ATM* getAtmWithMoneyStorage(const size_t id);

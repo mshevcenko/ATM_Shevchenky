@@ -78,7 +78,7 @@ time_t Toolbox::getOneDay() {
 	return getToolbox()._OneDay;
 }
 
-void Toolbox::setCurrentDate(time_t time) {
+void Toolbox::setCurrentDate(const time_t& time) {
 	if (getToolbox()._timeVar) {
 		return;
 	}
@@ -90,6 +90,13 @@ void Toolbox::addOneDayToCurrentDate() {
 		return;
 	}
 	getToolbox()._CurrentDate += getToolbox()._OneDay;
+}
+
+void Toolbox::setOneDay(const time_t& time){
+	if (getToolbox()._timeVar) {
+		return;
+	}
+	getToolbox()._OneDay = time;
 }
 
 size_t Toolbox::getLastCreatedAtmIdByBank(size_t bid) {

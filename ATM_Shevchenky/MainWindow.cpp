@@ -250,9 +250,9 @@ void MainWindow::initConnections()
 		&MainWindow::setMainWidget);
 	connect(
 		_withdrawalWidget,
-		&WithdrawalWidget::logout,
+		&WithdrawalWidget::closed,
 		this,
-		&MainWindow::logout);
+		&MainWindow::setMainWidget);
 	connect(
 		_withdrawalWidget,
 		&WithdrawalWidget::logout,

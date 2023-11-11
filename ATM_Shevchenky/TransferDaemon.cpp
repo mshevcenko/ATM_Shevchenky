@@ -10,8 +10,3 @@ TransferDaemon::TransferDaemon(const TransferDaemon& ss) : TransferDaemon(ss._id
 TransferDaemon::~TransferDaemon()
 {
 }
-
-void TransferDaemon::setActive(bool active)
-{
-	_isActive = active;
-}

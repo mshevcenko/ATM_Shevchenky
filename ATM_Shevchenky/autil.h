@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef AUTIL_H
-
+#define debug
 #include "Account.h"
 
 
@@ -80,7 +80,9 @@ public:
 
 	static time_t getOneDay();
 
-	static void setCurrentDate(time_t time);
+	static void setCurrentDate(const time_t& time);
+
+	static void setOneDay(const time_t& time);
 
 	static void addOneDayToCurrentDate();
 

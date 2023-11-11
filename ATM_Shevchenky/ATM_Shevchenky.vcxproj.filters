@@ -129,6 +129,9 @@
     <Filter Include="Source Files\gui\dialogs">
       <UniqueIdentifier>{242e8eb3-84ef-46b3-addc-7cd9db61ad4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\backend\tests">
+      <UniqueIdentifier>{b2d99a54-8f2b-4979-b0d7-0998326cc3dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="transfer.ui">
@@ -318,6 +321,9 @@
     </ClInclude>
     <ClInclude Include="gutil.h">
       <Filter>Header Files\gui\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests.h">
+      <Filter>Header Files\backend\tests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -562,6 +568,9 @@
     </ClCompile>
     <ClCompile Include="CheckPinCodeDialog.cpp">
       <Filter>Source Files\gui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests.cpp">
+      <Filter>Header Files\backend\tests</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

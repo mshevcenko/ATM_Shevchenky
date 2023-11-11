@@ -152,6 +152,7 @@ int Bank::proceedTransferDaemon(TransferDaemon & ss)
 
 
 		ss.nextDate();
+		Toolbox::getToolbox().g_TransferDaemonDao().edit(ss);
 		if (ss.isActive()) {
 			return proceedTransfer(Transfer(ss.from(), ss.to(), ss.amount()));
 		}
@@ -240,13 +241,14 @@ void Bank::doIncasators()
 
 void Bank::triggerNextDayForBank(const size_t id)
 {
+	Toolbox::getToolbox().addOneDayToCurrentDate();
 	vector<TransferDaemon> tdv = Toolbox::getToolbox().g_TransferDaemonDao().getAllByBankId(id);
 
 	for (std::vector<TransferDaemon>::iterator it = tdv.begin(); it != tdv.end(); ++it) {
 		proceedTransferDaemon(*it);
 	}
 
-	Toolbox::getToolbox().addOneDayToCurrentDate();
+	
 }
 
 void Bank::nextDay()

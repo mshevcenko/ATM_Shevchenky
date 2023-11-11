@@ -1,8 +1,17 @@
 #include <algorithm>
-#include "ATM.h"
-#include "MoneyStorage.h"
-#include "autil.h"
 
+#include "ATM.h"
+
+#include "Bank.h"
+
+#include "OverflowService.h"
+#include "OverflowCreditService.h"
+#include "Transfer.h"
+#include "TransferDaemon.h"
+#include "WithdrawalService.h"
+
+#include "autil.h"
+#include "MoneyStorage.h"
 
 ATM::ATM(const Bank& bank) : _currentAccount(nullptr), _id(0), _bankId(bank.id()) {
 	_currencyStorage = std::map<Currency, uint32_t>();
@@ -107,7 +116,7 @@ vector<pair<Currency, unsigned int>> ATM::withdraw(const size_t ammount)
 	for (int i = 0; i < SIZE_OF_BILLS_ARRAY; i++) {
 		uint32_t billsAmount = ammountRemainToGive / BILLS[i];
 		billsAmount = min(billsAmount, this->_currencyStorage[BILLS[i]]);
-		res.push_back(pair(BILLS[i], billsAmount));
+		res.push_back(pair<Currency, uint32_t>(BILLS[i], billsAmount));
 		ammountRemainToGive -= BILLS[i] * billsAmount;
 	}
 
@@ -221,8 +230,9 @@ bool ATM::createTransfer(Transfer transfer)
 	return false;
 }
 
-bool ATM::createTransferDaemon(const TransferDaemon& transferDaemon)
+bool ATM::createTransferDaemon(TransferDaemon transferDaemon)
 {
+	transferDaemon.setFrom(currentCardNumber());
 	bool res = Card::checkIfCardIsValid(transferDaemon.from());
 	res &= Card::checkIfCardIsValid(transferDaemon.to());
 	if (res) {
@@ -251,7 +261,7 @@ vector<TransferDaemon> ATM::getTransferDaemons()
 	return Toolbox::getToolbox().g_TransferDaemonDao().getByFrom(currentCardNumber());
 }
 
-bool ATM::editTransfer(const TransferDaemon& transferDaemon)
+bool ATM::editTransferDaemon(const TransferDaemon& transferDaemon)
 {
 	bool res = Card::checkIfCardIsValid(transferDaemon.from());
 	res &= Card::checkIfCardIsValid(transferDaemon.to());
@@ -261,7 +271,7 @@ bool ATM::editTransfer(const TransferDaemon& transferDaemon)
 	return false;
 }
 
-bool ATM::deleteTransfer(const TransferDaemon& transferDaemon)
+bool ATM::deleteTransferDaemon(const TransferDaemon& transferDaemon)
 {
 	return Toolbox::getToolbox().g_TransferDaemonDao().remove(transferDaemon);
 }
@@ -332,6 +342,8 @@ void ATM::doIncasators()
 		return;
 	}
 	bank->doIncasators();
+	auto msv = Toolbox::getToolbox().g_MoneyStorageDao().getAllByAtmId(id());
+	updateUsingMoneyStorage(msv);
 	delete bank;
 }
 

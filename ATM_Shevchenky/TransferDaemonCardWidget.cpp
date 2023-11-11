@@ -35,8 +35,8 @@ TransferDaemonCardWidget::~TransferDaemonCardWidget()
 
 void TransferDaemonCardWidget::changeActive(int state)
 {
-	_transferDaemon.setActive(!_transferDaemon.isActive());
-	_atm.editTransfer(_transferDaemon);
+	_transferDaemon.setIsActive(!_transferDaemon.isActive());
+	_atm.editTransferDaemon(_transferDaemon);
 }
 
 void TransferDaemonCardWidget::deleteTransferDaemon()
@@ -50,7 +50,7 @@ void TransferDaemonCardWidget::deleteTransferDaemon()
 	if (res == QMessageBox::Yes)
 	{
 		setVisible(false);
-		_atm.deleteTransfer(_transferDaemon);
+		_atm.deleteTransferDaemon(_transferDaemon);
 		emit deleted(this);
 	}
 }
