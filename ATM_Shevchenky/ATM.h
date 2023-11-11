@@ -9,7 +9,6 @@
 #include "Transfer.h"
 #include "TransferDaemon.h"
 #include "WithdrawalService.h"
-
 class MoneyStorage;
 
 using namespace std;
@@ -31,13 +30,15 @@ private:
 	const size_t _bankId;
 	//const Bank _bank;
 	void clearCurrencyStorage();
+	void doTransferService(Transfer ss);
+	void doWithdrawalService(WithdrawalService ss);
 public:
 	ATM(const Bank&);
-	~ATM();
 	ATM(const size_t& bankId);
 	ATM(const size_t& id, const size_t& bankId);
 	ATM(const size_t& id, const size_t& bankId, const map<Currency, unsigned int>& currencyStorage);
 	ATM(const ATM& ss);
+	~ATM();
 
 	inline const size_t& id() const {
 		return _id;
@@ -48,6 +49,10 @@ public:
 	}
 
 	inline map<Currency, unsigned int>& currencyStorage() {
+		return _currencyStorage;
+	}
+
+	inline const map<Currency, unsigned int>& currencyStorage() const {
 		return _currencyStorage;
 	}
 
@@ -68,15 +73,11 @@ public:
 	bool isExpired(const string& cardNumber);
 	bool insertCard(const string&, const string&);
 
-	
-	void doTransferService(Transfer ss);
-	void doWithdrawalService(WithdrawalService ss);
-
 	void exit();
 	bool checkPinCode(const string&);
 	bool changeCreditLimit(double newCreditLimit);
-	vector<pair<Currency, unsigned int>> withdraw(unsigned int ammount);
-	bool createOverflowService(const OverflowService& service);
+	vector<pair<Currency, unsigned int>> withdraw(const size_t ammount);
+	bool createOverflowService(OverflowService& service);
 	bool createOverflowCreditService(OverflowCreditService service);
 	bool hasOverflowService();
 	OverflowService getOverflowService();
@@ -104,5 +105,21 @@ public:
 	/*int provideMoney(Money money);*/
 	void saveToDB();
 	void doIncasators();
+
+
+
+	static ATM* getAtmWithMoneyStorage(const size_t id);
+
+	static bool createAtmWithMoneyStorage(const ATM& atmData);
+
+	static bool createAtmWithMoneyStorage(const ATM& atmData, const map<Currency, unsigned int>& currencyStorage);
+
+	static bool deleteAtmWithMoneyStorage(const size_t& aid);
+
+	static bool editAtmWithMoneyStorage(const ATM& atmData);
+
+	static bool editAtmWithMoneyStorage(const ATM& atmData, const map<Currency, unsigned int>& currencyStorage);
+
+	void fillWithMoney(const size_t ammountOfBills);
 
 };

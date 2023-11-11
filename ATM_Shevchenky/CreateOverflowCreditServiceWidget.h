@@ -1,5 +1,6 @@
 #pragma once
 #include "ui_create_overflow_credit_service.h"
+#include "CheckPinCodeDialog.h"
 
 class ATM;
 
@@ -16,10 +17,12 @@ public:
 
 signals:
     void closed();
+    void logout();
 
 private:
     Ui_CreateOverflowCreditService ui;
     ATM& _atm;
+    CheckPinCodeDialog* _checkPinCodeDialog;
 
     void tryCreateOverflowCreditService();
 };

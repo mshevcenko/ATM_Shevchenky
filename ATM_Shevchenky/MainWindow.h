@@ -1,18 +1,19 @@
 #pragma once
 #include <QtWidgets/QMainWindow>
-#include "LoginWidget.h";
-#include "MainWidget.h";
-#include "TransferWidget.h";
-#include "CreateTransferWidget.h";
-#include "CreateTransferDaemonWidget.h";
-#include "TransferDaemonsListWidget.h";
-#include "OverflowWidget.h";
-#include "OverflowServiceWidget.h";
-#include "CreateOverflowCreditServiceWidget.h";
-#include "OverflowCreditServicesListWidget.h";
-#include "TransferHistoryWidget.h";
-#include "WithdrawalWidget.h";
-#include "CreditLimitWidget.h";
+#include "LoginWidget.h"
+#include "MainWidget.h"
+#include "TransferWidget.h"
+#include "CreateTransferWidget.h"
+#include "CreateTransferDaemonWidget.h"
+#include "TransferDaemonsListWidget.h"
+#include "OverflowWidget.h"
+#include "OverflowServiceWidget.h"
+#include "CreateOverflowCreditServiceWidget.h"
+#include "OverflowCreditServicesListWidget.h"
+#include "TransferHistoryWidget.h"
+#include "WithdrawalWidget.h"
+#include "CreditLimitWidget.h"
+#include "CreateCardDialog.h"
 
 class ATM;
 
@@ -24,6 +25,7 @@ class MainWindow : public QMainWindow
 public:
 	MainWindow(ATM& atm, QWidget* parent = nullptr);
 	~MainWindow();
+	void logout();
 	void setLoginWidget();
 	void setMainWidget();
 	void setTransferWidget();
@@ -52,6 +54,11 @@ private:
 	TransferHistoryWidget* _transferHistoryWidget;
 	WithdrawalWidget* _withdrawalWidget;
 	CreditLimitWidget* _creditLimitWidget;
+	CreateCardDialog* _createCardDialog;
 
 	void initConnections();
+	void initMenuBar();
+	void tryNextDay();
+	void tryCreateCard();
+	void doIncasators();
 };

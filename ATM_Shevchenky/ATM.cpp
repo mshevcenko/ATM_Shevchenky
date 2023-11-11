@@ -1,17 +1,8 @@
 #include <algorithm>
-
 #include "ATM.h"
-
-#include "Bank.h"
-
-#include "OverflowService.h"
-#include "OverflowCreditService.h"
-#include "Transfer.h"
-#include "TransferDaemon.h"
-#include "WithdrawalService.h"
-
-#include "autil.h"
 #include "MoneyStorage.h"
+#include "autil.h"
+
 
 ATM::ATM(const Bank& bank) : _currentAccount(nullptr), _id(0), _bankId(bank.id()) {
 	_currencyStorage = std::map<Currency, uint32_t>();
@@ -58,7 +49,7 @@ void ATM::updateUsingMoneyStorage(vector<MoneyStorage> msv)
 
 bool ATM::isExpired(const string& cardNumber)
 {
-	Card* ccP = g_CardDao.getByNumber(cardNumber);
+	Card* ccP = Toolbox::getToolbox().g_CardDao().getByNumber(cardNumber);
 	if (ccP == nullptr) {
 		return true;
 	}
@@ -105,27 +96,27 @@ bool ATM::checkPinCode(const string& pin)
 bool ATM::changeCreditLimit(double newCreditLimit)
 {
 	currentAccount().changeCreditLimit(newCreditLimit);
-	return g_AccountDao.edit(currentAccount());
+	return Toolbox::getToolbox().g_AccountDao().edit(currentAccount());
 }
 
-vector<pair<Currency, unsigned int>> ATM::withdraw(unsigned int ammount)
+vector<pair<Currency, unsigned int>> ATM::withdraw(const size_t ammount)
 {
-
+	size_t ammountRemainToGive = ammount;
 	vector<pair<Currency, unsigned int>> res = vector<pair<Currency, unsigned int>>();
 
 	for (int i = 0; i < SIZE_OF_BILLS_ARRAY; i++) {
-		uint32_t billsAmount = ammount / BILLS[i];
+		uint32_t billsAmount = ammountRemainToGive / BILLS[i];
 		billsAmount = min(billsAmount, this->_currencyStorage[BILLS[i]]);
 		res.push_back(pair(BILLS[i], billsAmount));
-		ammount -= BILLS[i] * billsAmount;
+		ammountRemainToGive -= BILLS[i] * billsAmount;
 	}
 
-	if (ammount == 0) {
+	if (ammountRemainToGive == 0) {
 		//do provide money
 		WithdrawalService ws(currentCardNumber(), ammount, id());
 		if (Bank::proceedWithdrawalService(ws) == 1) {
 			for (int i = 0; i < SIZE_OF_BILLS_ARRAY; i++) {
-				this->_currencyStorage[BILLS[i]] -= res.at(SIZE_OF_BILLS_ARRAY - 1 - i).second; //maybe reverse order
+				this->_currencyStorage[BILLS[i]] -= res.at(i).second; //maybe reverse order
 			}
 			return res;
 		}
@@ -134,14 +125,18 @@ vector<pair<Currency, unsigned int>> ATM::withdraw(unsigned int ammount)
 	return vector<pair<Currency, unsigned int>>();
 }
 
-bool ATM::createOverflowService(const OverflowService& service)
+bool ATM::createOverflowService(OverflowService& service)
 {
+	service.setFrom(currentCardNumber());
 	bool res = Card::checkIfCardIsValid(service.from());
 	res &= Card::checkIfCardIsValid(service.to());
 	if (res) {
-		return g_OverflowServiceDao.create(service);
+		if (Toolbox::getToolbox().g_OverflowServiceDao().create(service)) {
+			Bank::proceedOverflowService(service);
+			return true;
+		}
 	}
-	return res;
+	return false;
 }
 
 bool ATM::createOverflowCreditService(OverflowCreditService service)
@@ -150,14 +145,17 @@ bool ATM::createOverflowCreditService(OverflowCreditService service)
 	bool res = Card::checkIfCardIsValid(service.from());
 	res &= Card::checkIfCardIsValid(service.to());
 	if (res) {
-		return g_OverflowCreditServiceDao.create(service);
+		if (Toolbox::getToolbox().g_OverflowCreditServiceDao().create(service)) {
+			Bank::proceedOverflowCreditService(service);
+			return true;
+		}
 	}
-	return res;
+	return false;
 }
 
 bool ATM::hasOverflowService()
 {
-	vector<OverflowService> owss = g_OverflowServiceDao.getByFrom(currentCardNumber());
+	vector<OverflowService> owss = Toolbox::getToolbox().g_OverflowServiceDao().getByFrom(currentCardNumber());
 	if (owss.size() > 0) {
 		return true;
 	}
@@ -166,48 +164,50 @@ bool ATM::hasOverflowService()
 
 OverflowService ATM::getOverflowService()
 {
-	vector<OverflowService> owss = g_OverflowServiceDao.getByFrom(currentCardNumber());
+	vector<OverflowService> owss = Toolbox::getToolbox().g_OverflowServiceDao().getByFrom(currentCardNumber());
 	return owss.front();
 }
 
 vector<OverflowCreditService> ATM::getOverflowCreditServices()
 {
-	return g_OverflowCreditServiceDao.getByFrom(currentCardNumber());
+	return Toolbox::getToolbox().g_OverflowCreditServiceDao().getByFrom(currentCardNumber());
 }
 
 bool ATM::deleteOverflowService(const OverflowService& service)
 {
-	return g_OverflowServiceDao.remove(service);
+	return Toolbox::getToolbox().g_OverflowServiceDao().remove(service);
 }
 
 bool ATM::deleteOverflowCreditService(const OverflowCreditService& service)
 {
-	return g_OverflowCreditServiceDao.remove(service);
+	return Toolbox::getToolbox().g_OverflowCreditServiceDao().remove(service);
 }
 
 vector<Transfer> ATM::getTransfers()
 {
-	vector<Transfer> out = g_TransferDao.getByFrom(currentCardNumber());
-	vector<Transfer> in = g_TransferDao.getByTo(currentCardNumber());
+	vector<Transfer> out = Toolbox::getToolbox().g_TransferDao().getByFrom(currentCardNumber());
+	vector<Transfer> in = Toolbox::getToolbox().g_TransferDao().getByTo(currentCardNumber());
 	
 	for (std::vector<Transfer>::iterator it = in.begin(); it != in.end(); ++it) {
 		(*it).setAmount(Bank::calculateFeeRecive((*it).amount()));
 	}
 
-	std::sort(out.begin(), out.end(), &Transfer::dateCmp); //maybe not needed
-	std::sort(in.begin(), in.end(), &Transfer::dateCmp); //maybe not needed
+	//std::sort(out.begin(), out.end(), Transfer::dateCmpR); //maybe not needed
+	//std::sort(in.begin(), in.end(), Transfer::dateCmpR); //maybe not needed
 
-	vector<Transfer> res = vector<Transfer>(out.size() + in.size());
-	std::merge(out.begin(), out.end(), in.begin(), in.end(), res.begin(), &Transfer::dateCmp);
-	std::cout << res.size() << std::endl;
-	return res;
+	//vector<Transfer> res = vector<Transfer>(out.size() + in.size());
+	//std::merge(out.begin(), out.end(), in.begin(), in.end(), res.begin(), Transfer::dateCmp);
+	std::move(out.begin(), out.end(), std::back_inserter(in));
+	std::sort(in.begin(), in.end(), Transfer::dateCmpR);
+
+	return in;
 }
 
 vector<WithdrawalService> ATM::getWithdrawalServices()
 {
-	vector<WithdrawalService> services = g_WithdrawalServiceDao.getByFrom(currentCardNumber());
-	sort(services.begin(), services.end(), &WithdrawalService::dateCmp);
-	return services;
+	vector<WithdrawalService> ss = Toolbox::getToolbox().g_WithdrawalServiceDao().getByFrom(currentCardNumber());
+	std::sort(ss.begin(), ss.end(), WithdrawalService::dateCmpR);
+	return ss;
 }
 
 bool ATM::createTransfer(Transfer transfer)
@@ -226,7 +226,7 @@ bool ATM::createTransferDaemon(const TransferDaemon& transferDaemon)
 	bool res = Card::checkIfCardIsValid(transferDaemon.from());
 	res &= Card::checkIfCardIsValid(transferDaemon.to());
 	if (res) {
-		return g_TransferDaemonDao.create(transferDaemon);
+		return Toolbox::getToolbox().g_TransferDaemonDao().create(transferDaemon);
 	}
 	return false;
 }
@@ -248,7 +248,7 @@ double ATM::calculateFeeReceived(double money)
 
 vector<TransferDaemon> ATM::getTransferDaemons()
 {
-	return g_TransferDaemonDao.getByFrom(currentCardNumber());
+	return Toolbox::getToolbox().g_TransferDaemonDao().getByFrom(currentCardNumber());
 }
 
 bool ATM::editTransfer(const TransferDaemon& transferDaemon)
@@ -256,19 +256,23 @@ bool ATM::editTransfer(const TransferDaemon& transferDaemon)
 	bool res = Card::checkIfCardIsValid(transferDaemon.from());
 	res &= Card::checkIfCardIsValid(transferDaemon.to());
 	if (res) {
-		return g_TransferDaemonDao.edit(transferDaemon);
+		return Toolbox::getToolbox().g_TransferDaemonDao().edit(transferDaemon);
 	}
 	return false;
 }
 
 bool ATM::deleteTransfer(const TransferDaemon& transferDaemon)
 {
-	return g_TransferDaemonDao.remove(transferDaemon);
+	return Toolbox::getToolbox().g_TransferDaemonDao().remove(transferDaemon);
 }
 
 bool ATM::createCardAndAccount(const string& cardNumber, const string& pinCode, double balance, time_t expiryDate, const size_t bankId)
 {
 	Account acc = Account(0, 0, balance, bankId);
+	Card card = Card(cardNumber, pinCode, 0, expiryDate, Card::Credit);
+	return Toolbox::getToolbox().g_BankDao().addAccountAndCardByBankId(bankId, acc, card);
+
+	/*Account acc = Account(0, 0, balance, bankId);
 	if (g_AccountDao.create(acc)) {
 		size_t accid = Toolbox::getLastCreatedAccountId(bankId);
 		Card card = Card(cardNumber, pinCode, accid, expiryDate, Card::Credit);
@@ -278,7 +282,7 @@ bool ATM::createCardAndAccount(const string& cardNumber, const string& pinCode, 
 		else {
 			g_AccountDao.remove(Account(accid));
 		}
-	}
+	}*/
 	return false;
 }
 
@@ -299,7 +303,7 @@ double ATM::getCreditLimit()
 
 time_t ATM::getExpiryDate()
 {
-	Card *cc = g_CardDao.getByAccount(currentAccount());
+	Card *cc = Toolbox::getToolbox().g_CardDao().getByAccount(currentAccount());
 	time_t res = 0;
 	if (cc != nullptr) {
 		res = cc->expiryDate();
@@ -313,18 +317,17 @@ void ATM::updateData()
 	if (_currentAccount != nullptr) {
 		delete _currentAccount;
 	}
-	_currentAccount = g_AccountDao.getByCardNumber(_currentCardNumber);
+	_currentAccount = Toolbox::getToolbox().g_AccountDao().getByCardNumber(_currentCardNumber);
 }
 
 void ATM::saveToDB()
 {
-	exit();
-	g_AtmDao.edit(*this);
+	editAtmWithMoneyStorage(*this);
 }
 
 void ATM::doIncasators()
 {
-	Bank* bank = g_BankDao.getById(bankId());
+	Bank* bank = Toolbox::getToolbox().g_BankDao().getById(bankId());
 	if (bank == nullptr) {
 		return;
 	}
@@ -333,30 +336,81 @@ void ATM::doIncasators()
 }
 
 
-//int ATM::provideMoney(Money money)
-//{
-//	uint32_t planedToBeGivenBills[sizeof(BILLS)/sizeof(Currency)];
-//	
-//	for (int i = 0; i < SIZE_OF_BILLS_ARRAY; i++) {
-//		planedToBeGivenBills[i] = money / BILLS[i];
-//		planedToBeGivenBills[i] = min(planedToBeGivenBills[i], this->_currencyStorange[BILLS[i]]);
-//		money -= BILLS[i] * planedToBeGivenBills[i];
-//	}
-//	
-//	if (money == 0) {
-//		//do provide money
-//
-//		for (int i = 0; i < SIZE_OF_BILLS_ARRAY; i++) {
-//			this->_currencyStorange[BILLS[i]] -= planedToBeGivenBills[i];
-//		}
-//
-//		return 1;
-//	}
-//	else {
-//		//not enought money in ATM
-//		return -1;
-//	}
-//	return 0;
-//}
+
+
+ATM* ATM::getAtmWithMoneyStorage(const size_t id) {
+	ATM* atm = Toolbox::getToolbox().g_AtmDao().getById(id);
+	if (atm == nullptr) {
+		return nullptr;
+	}
+	vector<MoneyStorage> msv = Toolbox::getToolbox().g_MoneyStorageDao().getAllByAtmId(id);
+	atm->updateUsingMoneyStorage(msv);
+	return atm;
+}
+
+bool ATM::createAtmWithMoneyStorage(const ATM& atmData) {
+	return createAtmWithMoneyStorage(atmData, atmData.currencyStorage());
+}
+
+bool ATM::createAtmWithMoneyStorage(const ATM& atmData, const map<Currency, unsigned int>& currencyStorage) {
+	if (!Toolbox::getToolbox().g_AtmDao().create(atmData)) {
+		return false;
+	}
+	//g_AtmDao.getAllByBankId();
+	size_t aid = Toolbox::getLastCreatedAtmIdByBank(atmData.bankId());
+
+	bool isCreatedCurrency = true;
+	for (auto it = currencyStorage.begin(); it != currencyStorage.end() && isCreatedCurrency; ++it) {
+		MoneyStorage bill = MoneyStorage(MoneyStorage::Denomination((*it).first), (*it).second, aid);
+		isCreatedCurrency = Toolbox::getToolbox().g_MoneyStorageDao().create(bill);
+	}
+	if (!isCreatedCurrency) {
+		auto moneyTodelete = Toolbox::getToolbox().g_MoneyStorageDao().getAllByAtmId(aid);
+		for (auto it = moneyTodelete.begin(); it != moneyTodelete.end(); ++it) {
+			Toolbox::getToolbox().g_MoneyStorageDao().remove(*it);
+		}
+		Toolbox::getToolbox().g_AtmDao().remove(ATM(aid, 0));
+	}
+	return isCreatedCurrency;
+}
+
+bool ATM::deleteAtmWithMoneyStorage(const size_t& aid) {
+	bool deletedAllMoney = true;
+	auto moneyTodelete = Toolbox::getToolbox().g_MoneyStorageDao().getAllByAtmId(aid);
+	for (auto it = moneyTodelete.begin(); it != moneyTodelete.end() && deletedAllMoney; ++it) {
+		deletedAllMoney = Toolbox::getToolbox().g_MoneyStorageDao().remove(*it);
+	}
+	return Toolbox::getToolbox().g_AtmDao().remove(ATM(aid, 0)) && deletedAllMoney;
+}
+
+bool ATM::editAtmWithMoneyStorage(const ATM& atmData) {
+	return editAtmWithMoneyStorage(atmData, atmData.currencyStorage());
+}
+
+bool ATM::editAtmWithMoneyStorage(const ATM& atmData, const map<Currency, unsigned int>& currencyStorage) {
+	if (!Toolbox::getToolbox().g_AtmDao().edit(atmData)) {
+		return false;
+	}
+
+	bool isEditedCurrency = true;
+	for (auto it = currencyStorage.begin(); it != currencyStorage.end() && isEditedCurrency; ++it) {
+		MoneyStorage* ms = Toolbox::getToolbox().g_MoneyStorageDao().getByDenominationAndAtmId(MoneyStorage::Denomination((*it).first), atmData.id());
+		if (ms == nullptr) {
+			isEditedCurrency = Toolbox::getToolbox().g_MoneyStorageDao().create(MoneyStorage(MoneyStorage::Denomination((*it).first), (*it).second, atmData.id()));
+			continue;
+		}
+		size_t msid = ms->id();
+		MoneyStorage bill = MoneyStorage(msid, MoneyStorage::Denomination((*it).first), (*it).second, atmData.id());
+		isEditedCurrency = Toolbox::getToolbox().g_MoneyStorageDao().edit(bill);
+	}
+
+	return isEditedCurrency;
+}
+
+void ATM::fillWithMoney(const size_t ammountOfBills) {
+	for (int i = 0; i < SIZE_OF_BILLS_ARRAY; i++) {
+		(currencyStorage()[BILLS[i]]) = ammountOfBills;
+	}
+}
 
 

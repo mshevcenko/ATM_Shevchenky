@@ -1,5 +1,6 @@
 #pragma once
 #include "ui_create_transfer.h"
+#include "CheckPinCodeDialog.h"
 
 class ATM;
 
@@ -16,6 +17,7 @@ public:
 
 signals:
     void closed();
+    void logout();
 
 private slots:
     void setAmmountToBeReceived(QString text);
@@ -24,6 +26,7 @@ private slots:
 private:
     ATM& _atm;
     Ui_CreateTransfer ui;
+    CheckPinCodeDialog* _checkPinCodeDialog;
 
     void tryTransfer();
 };

@@ -1,9 +1,5 @@
 #include "Account.h"
 
-//Account::Account(const Money& creditLimit, const Money& balance) : _creditLimit(creditLimit), _balance(balance), _id(0) {
-//	
-//}
-
 Account::Account(const size_t& id) : Account(id, 0, 0, 0) { }
 Account::Account(const Money& creditLimit, const Money& balance) : Account(0, creditLimit, balance, 0) { }
 Account::Account(const Money& creditLimit, const Money& balance, const size_t& bankId) : Account(0, creditLimit, balance, bankId) { }

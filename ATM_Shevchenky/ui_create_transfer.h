@@ -272,8 +272,8 @@ public:
         createTransferLabel->setText(QCoreApplication::translate("CreateTransfer", "Create Transfer", nullptr));
         targetLabel->setText(QCoreApplication::translate("CreateTransfer", "Target:", nullptr));
         targetLineEdit->setText(QCoreApplication::translate("CreateTransfer", "1234567890123456", nullptr));
-        ammountToBeSentLabel->setText(QCoreApplication::translate("CreateTransfer", "Ammount to be sent:", nullptr));
-        ammountToBeReceivedLabel->setText(QCoreApplication::translate("CreateTransfer", "Ammount to be received:", nullptr));
+        ammountToBeSentLabel->setText(QCoreApplication::translate("CreateTransfer", "Amount to be sent:", nullptr));
+        ammountToBeReceivedLabel->setText(QCoreApplication::translate("CreateTransfer", "Amount to be received:", nullptr));
         transferButton->setText(QCoreApplication::translate("CreateTransfer", "TRANSFER", nullptr));
     } // retranslateUi
 

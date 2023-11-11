@@ -6,6 +6,7 @@
 using namespace std;
 
 using CardNumber = string;
+using Money = double;
 
 class Card
 {
@@ -23,7 +24,7 @@ private:
 	const Type _type = Card::Type::Credit;
 	
 public:
-	Card(const string& cardNumber);
+	Card(const string& cardNumber = 0);
 	Card(const string& cardNumber, const string& pincode, const size_t& accountId, const time_t& expiryDate, const Type& type);
 	~Card();
 	Card(const CardNumber& cardNumber, const string& pincode, const time_t& expiryDate, const Account& account);

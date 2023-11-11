@@ -11,14 +11,13 @@ private:
 	Money _balance;
 	const size_t _bankId;
 public:
-	Account(const size_t& id);
+	Account(const size_t& id = 0);
 	Account(const Money& creditLimit, const Money& balance);
 	Account(const Money& creditLimit, const Money& balance, const size_t& bankId);
 	Account(const size_t& id, const Money& creditLimit, const Money& balance, const size_t& bankId);
-
-	//Account(const Money&, const Money&);
-	~Account();
 	Account(const Account& acc);
+
+	~Account();
 
 	inline const Money& creditLimit() const
 	{
@@ -45,5 +44,8 @@ public:
 	{
 		_creditLimit = money;
 	}
-
+	inline const Money& availableMoney() const
+	{
+		return _balance + _creditLimit;
+	}
 };

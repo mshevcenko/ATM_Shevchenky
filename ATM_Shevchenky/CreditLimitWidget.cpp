@@ -4,7 +4,8 @@
 
 CreditLimitWidget::CreditLimitWidget(ATM& atm, QWidget* parent) :
     QWidget(parent),
-    _atm(atm)
+    _atm(atm),
+    _checkPinCodeDialog(new CheckPinCodeDialog(_atm, this))
 {
     ui.setupUi(this);
     connect(
@@ -24,12 +25,19 @@ CreditLimitWidget::~CreditLimitWidget()
 
 void CreditLimitWidget::updateData()
 {
-    ui.balanceLineEdit->setText(QString::number(_atm.getBalance()));
-    ui.creditLimitLineEdit->setText(QString::number(_atm.getCreditLimit()));
+    ui.balanceLineEdit->setText(QString::number(_atm.getBalance(), 'f', 2));
+    ui.creditLimitLineEdit->setText(QString::number(_atm.getCreditLimit(), 'f', 2));
 }
 
 void CreditLimitWidget::tryChangeCreditLimit()
 {
+    _checkPinCodeDialog->updateData();
+    int result = _checkPinCodeDialog->exec();
+    if (result == QDialog::Rejected)
+    {
+        emit logout();
+        return;
+    }
     _atm.changeCreditLimit(ui.creditLimitLineEdit->text().toDouble());
     QMessageBox msgBox;
     msgBox.setWindowTitle("Credit limit");

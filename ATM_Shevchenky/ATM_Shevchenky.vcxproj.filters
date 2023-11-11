@@ -123,6 +123,12 @@
     <Filter Include="Source Files\gui\util">
       <UniqueIdentifier>{4d24df75-d270-45f5-aad1-3f6a35005ef0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gui\dialogs">
+      <UniqueIdentifier>{da1c71b5-e5da-4706-a5d3-08c7c0b35542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\dialogs">
+      <UniqueIdentifier>{242e8eb3-84ef-46b3-addc-7cd9db61ad4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="transfer.ui">
@@ -144,9 +150,6 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="overflow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="test_shadow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="create_overflow_credit_service.ui">
@@ -180,6 +183,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="transfer_to_card.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="create_card.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="check_pin_code.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -387,6 +396,12 @@
     <QtMoc Include="WithdrawalCardWidget.h">
       <Filter>Header Files\gui\widgets\cards</Filter>
     </QtMoc>
+    <QtMoc Include="CreateCardDialog.h">
+      <Filter>Header Files\gui\dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="CheckPinCodeDialog.h">
+      <Filter>Header Files\gui\dialogs</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MoneyLineEdit.cpp">
@@ -538,6 +553,15 @@
     </ClCompile>
     <ClCompile Include="TransferFromCardWidget.cpp">
       <Filter>Source Files\gui\widgets\cards</Filter>
+    </ClCompile>
+    <ClCompile Include="autil.cpp">
+      <Filter>Header Files\backend\bank</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateCardDialog.cpp">
+      <Filter>Source Files\gui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckPinCodeDialog.cpp">
+      <Filter>Source Files\gui\dialogs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

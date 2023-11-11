@@ -14,6 +14,7 @@
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
@@ -45,7 +46,7 @@ public:
     QLabel *targetLabel;
     IntegerLineEdit *targetLineEdit;
     QLabel *ammountToBeReceivedLabel;
-    MoneyLineEdit *ammountToBeTriggeredLineEdit;
+    QLineEdit *ammountToBeTriggeredLineEdit;
     QPushButton *createButton;
     QSpacerItem *verticalSpacer_4;
     QSpacerItem *horizontalSpacer_5;
@@ -173,7 +174,7 @@ public:
 
         formLayout_3->setWidget(1, QFormLayout::LabelRole, ammountToBeReceivedLabel);
 
-        ammountToBeTriggeredLineEdit = new MoneyLineEdit(CreateOverflowCreditService);
+        ammountToBeTriggeredLineEdit = new QLineEdit(CreateOverflowCreditService);
         ammountToBeTriggeredLineEdit->setObjectName("ammountToBeTriggeredLineEdit");
         sizePolicy1.setHeightForWidth(ammountToBeTriggeredLineEdit->sizePolicy().hasHeightForWidth());
         ammountToBeTriggeredLineEdit->setSizePolicy(sizePolicy1);
@@ -240,7 +241,7 @@ public:
         createOverflowCreditServiceLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Create Overflow Credit Service", nullptr));
         targetLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Target:", nullptr));
         targetLineEdit->setText(QCoreApplication::translate("CreateOverflowCreditService", "1234567890123456", nullptr));
-        ammountToBeReceivedLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Ammount to be triggered:", nullptr));
+        ammountToBeReceivedLabel->setText(QCoreApplication::translate("CreateOverflowCreditService", "Amount to be triggered:", nullptr));
         createButton->setText(QCoreApplication::translate("CreateOverflowCreditService", "CREATE", nullptr));
     } // retranslateUi
 

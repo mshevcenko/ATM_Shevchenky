@@ -1,26 +1,25 @@
 #pragma once
-#include "Card.h"
+#include <string>
 
+using CardNumber = std::string;
 using Money = double;
 
 class OverflowService 
 {
 private:
 	const size_t _id;
-	const CardNumber _from;
+	CardNumber _from;
 	const CardNumber _to;
 	const Money _threshold;
 
 public:
 
-	OverflowService(const size_t& id) : OverflowService(id, "", "", 0) { }
-	OverflowService(const CardNumber& from, const CardNumber& to, const Money& threshold) : 
-		OverflowService(0, from, to, threshold) { }
-	OverflowService(const size_t& id, const CardNumber& from, const CardNumber& to, const Money& threshold) : 
-		_id(id), _from(from), _to(to), _threshold(threshold) { }
-
-	OverflowService(const OverflowService& ss) : OverflowService(ss._id, ss._from, ss._to, ss._threshold) {}
+	OverflowService(const size_t& id = 0);
+	OverflowService(const CardNumber& from, const CardNumber& to, const Money& threshold);
+	OverflowService(const size_t& id, const CardNumber& from, const CardNumber& to, const Money& threshold);
+	OverflowService(const OverflowService& ss);
 	~OverflowService();
+
 
 	inline const CardNumber& from() const
 	{
@@ -40,4 +39,9 @@ public:
 	inline const size_t& id() const {
 		return _id;
 	}
+
+	inline void setFrom(const CardNumber& from) {
+		_from = from;
+	}
+
 };

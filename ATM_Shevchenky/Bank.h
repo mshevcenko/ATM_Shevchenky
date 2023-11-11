@@ -30,7 +30,7 @@ private:
 
 public:
 
-	Bank(const string& name);
+	Bank(const string& name = "TB");
 	Bank(const size_t& id, const string& name = "Standard bank");
 	~Bank();
 	Bank(const Bank& ss);
@@ -53,7 +53,7 @@ public:
 
 	static int proceedOverflowService(const OverflowService& ss);
 	static int proceedOverflowCreditService(const OverflowCreditService& ss);
-	static int proceedTransfer(const Transfer& ss);
+	static int proceedTransfer(Transfer ss);
 	static int proceedTransferDaemon(TransferDaemon & ss);
 	static int proceedWithdrawalService(const WithdrawalService& ss);
 

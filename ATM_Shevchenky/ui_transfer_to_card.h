@@ -133,7 +133,7 @@ public:
         fromImage->setText(QString());
         toLabel->setText(QCoreApplication::translate("TransferToCard", "To:", nullptr));
         toLineEdit->setText(QCoreApplication::translate("TransferToCard", "1234567890123456", nullptr));
-        ammountLabel->setText(QCoreApplication::translate("TransferToCard", "Ammount:", nullptr));
+        ammountLabel->setText(QCoreApplication::translate("TransferToCard", "Amount:", nullptr));
         dateLabel->setText(QCoreApplication::translate("TransferToCard", "Date:", nullptr));
     } // retranslateUi
 

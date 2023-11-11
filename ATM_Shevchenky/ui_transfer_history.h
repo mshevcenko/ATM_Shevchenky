@@ -14,6 +14,7 @@
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
@@ -42,13 +43,14 @@ public:
     QWidget *transferHistoryWidget;
     QVBoxLayout *transferHistoryLayout;
     QLabel *emptyLabel;
+    QPushButton *moreButton;
     QSpacerItem *verticalSpacer;
 
     void setupUi(QWidget *TransferHistory)
     {
         if (TransferHistory->objectName().isEmpty())
             TransferHistory->setObjectName("TransferHistory");
-        TransferHistory->resize(586, 438);
+        TransferHistory->resize(623, 490);
         verticalLayout_2 = new QVBoxLayout(TransferHistory);
         verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout_4 = new QHBoxLayout();
@@ -139,7 +141,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 568, 318));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 605, 370));
         verticalLayout = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout->setObjectName("verticalLayout");
         transferHistoryWidget = new QWidget(scrollAreaWidgetContents);
@@ -161,6 +163,27 @@ public:
         emptyLabel->setAlignment(Qt::AlignCenter);
 
         verticalLayout->addWidget(emptyLabel);
+
+        moreButton = new QPushButton(scrollAreaWidgetContents);
+        moreButton->setObjectName("moreButton");
+        QSizePolicy sizePolicy3(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(moreButton->sizePolicy().hasHeightForWidth());
+        moreButton->setSizePolicy(sizePolicy3);
+        moreButton->setMinimumSize(QSize(120, 60));
+        moreButton->setFont(font3);
+        moreButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"	color: white;\n"
+"	background-color: rgb(100, 100, 100);\n"
+"	border-radius: 10px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(50, 50, 50);\n"
+"}"));
+
+        verticalLayout->addWidget(moreButton, 0, Qt::AlignHCenter);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -186,6 +209,7 @@ public:
         closeButton->setText(QString());
         overflowCreditServicesListLabel->setText(QCoreApplication::translate("TransferHistory", "Transfer History", nullptr));
         emptyLabel->setText(QCoreApplication::translate("TransferHistory", "Empty", nullptr));
+        moreButton->setText(QCoreApplication::translate("TransferHistory", "MORE", nullptr));
     } // retranslateUi
 
 };

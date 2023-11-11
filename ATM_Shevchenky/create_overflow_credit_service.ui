@@ -227,12 +227,12 @@
             </font>
            </property>
            <property name="text">
-            <string>Ammount to be triggered:</string>
+            <string>Amount to be triggered:</string>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="MoneyLineEdit" name="ammountToBeTriggeredLineEdit">
+          <widget class="QLineEdit" name="ammountToBeTriggeredLineEdit">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>0</horstretch>

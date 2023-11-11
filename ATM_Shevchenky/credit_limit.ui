@@ -154,7 +154,7 @@
           </font>
          </property>
          <property name="maxLength">
-          <number>7</number>
+          <number>13</number>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

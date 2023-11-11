@@ -114,7 +114,7 @@ public:
     {
         WithdrawalCard->setWindowTitle(QCoreApplication::translate("WithdrawalCard", "Form", nullptr));
         withdrawalImage->setText(QString());
-        ammountLabel->setText(QCoreApplication::translate("WithdrawalCard", "Ammount:", nullptr));
+        ammountLabel->setText(QCoreApplication::translate("WithdrawalCard", "Amount:", nullptr));
         dateLabel->setText(QCoreApplication::translate("WithdrawalCard", "Date:", nullptr));
     } // retranslateUi
 

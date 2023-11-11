@@ -261,7 +261,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Ammount to be sent:</string>
+            <string>Amount to be sent:</string>
            </property>
           </widget>
          </item>
@@ -291,7 +291,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Ammount to be received:</string>
+            <string>Amount to be received:</string>
            </property>
           </widget>
          </item>

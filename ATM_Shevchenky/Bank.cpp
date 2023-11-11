@@ -10,12 +10,12 @@
 
 Card Bank::getCardDataByCardNum(CardNumber cardNumber)
 {
-	return copyAndDeletePointer(g_CardDao.getByNumber(cardNumber));
+	return copyAndDeletePointer(Toolbox::getToolbox().g_CardDao().getByNumber(cardNumber));
 }
 
 ATM Bank::getATMbyId(int id)
 {
-	return copyAndDeletePointer(Toolbox::getAtmWithMoney(id));
+	return copyAndDeletePointer(ATM::getAtmWithMoneyStorage(id));
 }
 
 
@@ -28,16 +28,16 @@ Bank::Bank(const Bank& ss) : Bank(ss._id, ss._name) {}
 
 int Bank::proceedOverflowService(const OverflowService& ss)
 {
-	Card *fromCardP = g_CardDao.getByNumber(ss.from());
+	Card *fromCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.from());
 	if (fromCardP == nullptr || checkIfCardIsExpired(*fromCardP)) {
-		g_OverflowServiceDao.remove(ss);
+		Toolbox::getToolbox().g_OverflowServiceDao().remove(ss);
 		return -2;
 	}
 	Card fromCard = copyAndDeletePointer(fromCardP);
 
-	Card *toCardP = g_CardDao.getByNumber(ss.to());
+	Card *toCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.to());
 	if (toCardP == nullptr || checkIfCardIsExpired(*toCardP)) {
-		g_OverflowServiceDao.remove(ss);
+		Toolbox::getToolbox().g_OverflowServiceDao().remove(ss);
 		return -2;
 	}
 	Card toCard = copyAndDeletePointer(toCardP);
@@ -51,39 +51,42 @@ int Bank::proceedOverflowService(const OverflowService& ss)
 
 int Bank::proceedOverflowCreditService(const OverflowCreditService& ss)
 {
-	Card* fromCardP = g_CardDao.getByNumber(ss.from());
+	Card* fromCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.from());
 	if (fromCardP == nullptr || checkIfCardIsExpired(*fromCardP)) {
-		g_OverflowCreditServiceDao.remove(ss);
+		Toolbox::getToolbox().g_OverflowCreditServiceDao().remove(ss);
 		return -2;
 	}
 	Card fromCard = copyAndDeletePointer(fromCardP);
 
-	Card* toCardP = g_CardDao.getByNumber(ss.to());
+	Card* toCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.to());
 	if (toCardP == nullptr || checkIfCardIsExpired(*toCardP)) {
-		g_OverflowCreditServiceDao.remove(ss);
+		Toolbox::getToolbox().g_OverflowCreditServiceDao().remove(ss);
 		return -2;
 	}
 	Card toCard = copyAndDeletePointer(toCardP);
 
 	if (toCard.account().balance() < ss.amount()) {
-		return proceedTransfer(Transfer(ss.from(), ss.to(), min(max(fromCard.account().balance(), 0.0), calculateFeeSend(ss.amount() - toCard.account().balance()))));
+		//fromCard.account().availableMoney() --use if allowing to go in credit
+		//max(fromCard.account().balance(), 0.0) --use if not allowing to go in credit
+		double maxonacc = fromCard.account().availableMoney();
+		return proceedTransfer(Transfer(ss.from(), ss.to(), min(maxonacc, calculateFeeSend(ss.amount() - toCard.account().balance()))));
 	}
 	return 0;
 }
 
-int Bank::proceedTransfer(const Transfer& ss)
+int Bank::proceedTransfer(Transfer ss)
 {
 	if (ss.amount() <= 0) {
 		return -3;
 	}
-	Card* fromCardP = g_CardDao.getByNumber(ss.from());
+	Card* fromCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.from());
 	if (fromCardP == nullptr || checkIfCardIsExpired(*fromCardP)) {
 		//g_TransferDao.remove(ss);
 		return -2;
 	}
 	Card fromCard = copyAndDeletePointer(fromCardP);
 
-	Card* toCardP = g_CardDao.getByNumber(ss.to());
+	Card* toCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.to());
 	if (toCardP == nullptr || checkIfCardIsExpired(*toCardP)) {
 		//g_TransferDao.remove(ss);
 		return -2;
@@ -92,14 +95,18 @@ int Bank::proceedTransfer(const Transfer& ss)
 
 	int status = proceedTransferActions(fromCard, toCard, ss.amount());
 	if (status == 1) {
-		g_TransferDao.create(ss); //chose maybe another place to write in db
+		Toolbox::getToolbox().g_TransferDao().create(ss); //chose maybe another place to write in db
 
-		vector<OverflowService> ovss = g_OverflowServiceDao.getByFrom(toCard.cardNumber());
+		vector<OverflowService> ovss = Toolbox::getToolbox().g_OverflowServiceDao().getByFrom(toCard.cardNumber());
 		for (std::vector<OverflowService>::iterator it = ovss.begin(); it != ovss.end(); ++it) {
 			proceedOverflowService(*it);
 		}
-		vector<OverflowCreditService> ovcss = g_OverflowCreditServiceDao.getByTo(fromCard.cardNumber());
+		vector<OverflowCreditService> ovcss = Toolbox::getToolbox().g_OverflowCreditServiceDao().getByTo(fromCard.cardNumber());
 		for (std::vector<OverflowCreditService>::iterator it = ovcss.begin(); it != ovcss.end(); ++it) {
+			proceedOverflowCreditService(*it);
+		}
+		vector<OverflowCreditService> ovcssrp = Toolbox::getToolbox().g_OverflowCreditServiceDao().getByFrom(fromCard.cardNumber());
+		for (std::vector<OverflowCreditService>::iterator it = ovcssrp.begin(); it != ovcssrp.end(); ++it) {
 			proceedOverflowCreditService(*it);
 		}
 	}
@@ -109,11 +116,11 @@ int Bank::proceedTransfer(const Transfer& ss)
 
 int Bank::proceedTransferActions(Card& fromCard, Card& toCard, const Money& amount)
 {
-	if (fromCard.account().balance() + fromCard.account().creditLimit() >= amount) {
+	if (fromCard.account().availableMoney() >= amount) {
 		fromCard.changeBalance(-amount);
-		g_AccountDao.edit(fromCard.account());
+		Toolbox::getToolbox().g_AccountDao().edit(fromCard.account());
 		toCard.changeBalance(calculateFeeRecive(amount));
-		g_AccountDao.edit(toCard.account());
+		Toolbox::getToolbox().g_AccountDao().edit(toCard.account());
 		return 1;
 	}
 
@@ -122,24 +129,32 @@ int Bank::proceedTransferActions(Card& fromCard, Card& toCard, const Money& amou
 
 int Bank::proceedTransferDaemon(TransferDaemon & ss)
 {
+	if (ss.amount() <= 0) {
+		Toolbox::getToolbox().g_TransferDaemonDao().remove(ss);
+		return -3;
+	}
 	
-	Card* fromCardP = g_CardDao.getByNumber(ss.from());
-	if (fromCardP == nullptr || checkIfCardIsExpired(*fromCardP)) {
-		g_TransferDaemonDao.remove(ss);
-		return -2;
-	}
-	Card fromCard = copyAndDeletePointer(fromCardP);
-
-	Card* toCardP = g_CardDao.getByNumber(ss.to());
-	if (toCardP == nullptr || checkIfCardIsExpired(*toCardP)) {
-		g_TransferDaemonDao.remove(ss);
-		return -2;
-	}
-	Card toCard = copyAndDeletePointer(toCardP);
-
 	if (ss.nextTransferDate() == Toolbox::getCurrentDate()) {
+
+		Card* fromCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.from());
+		if (fromCardP == nullptr || checkIfCardIsExpired(*fromCardP)) {
+			Toolbox::getToolbox().g_TransferDaemonDao().remove(ss);
+			return -2;
+		}
+		Card fromCard = copyAndDeletePointer(fromCardP);
+
+		Card* toCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.to());
+		if (toCardP == nullptr || checkIfCardIsExpired(*toCardP)) {
+			Toolbox::getToolbox().g_TransferDaemonDao().remove(ss);
+			return -2;
+		}
+		Card toCard = copyAndDeletePointer(toCardP);
+
+
 		ss.nextDate();
-		return proceedTransfer(Transfer(ss.from(), ss.to(), ss.amount()));
+		if (ss.isActive()) {
+			return proceedTransfer(Transfer(ss.from(), ss.to(), ss.amount()));
+		}
 	}
 	
 	return 0;
@@ -150,18 +165,18 @@ int Bank::proceedWithdrawalService(const WithdrawalService& ss)
 	if (ss.amount() <= 0) {
 		return -3;
 	}
-	Card* fromCardP = g_CardDao.getByNumber(ss.from());
+	Card* fromCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.from());
 	if (fromCardP == nullptr || checkIfCardIsExpired(*fromCardP)) {
-		g_WithdrawalServiceDao.remove(ss);
+		Toolbox::getToolbox().g_WithdrawalServiceDao().remove(ss);
 		return -2;
 	}
 	Card fromCard = copyAndDeletePointer(fromCardP);
 	
 	int status = proceedWithdrawalActions(fromCard, ss.atmId(), ss.amount());
 	if (status == 1) {
-		g_WithdrawalServiceDao.create(ss); //chose maybe another place to write in db
+		Toolbox::getToolbox().g_WithdrawalServiceDao().create(ss); //chose maybe another place to write in db
 
-		vector<OverflowCreditService> ovcss = g_OverflowCreditServiceDao.getByFrom(fromCard.cardNumber());
+		vector<OverflowCreditService> ovcss = Toolbox::getToolbox().g_OverflowCreditServiceDao().getByFrom(fromCard.cardNumber());
 		for (std::vector<OverflowCreditService>::iterator it = ovcss.begin(); it != ovcss.end(); ++it) {
 			proceedOverflowCreditService(*it);
 		}
@@ -172,10 +187,10 @@ int Bank::proceedWithdrawalService(const WithdrawalService& ss)
 }
 
 int Bank::proceedWithdrawalActions(Card& fromCard, int atmId, const Money& ammount) {
-	if (fromCard.account().balance() + fromCard.account().creditLimit() >= ammount) {
+	if (fromCard.account().availableMoney() >= ammount) {
 		ATM atm = getATMbyId(atmId);
 		fromCard.changeBalance(-ammount);
-		g_AccountDao.edit(fromCard.account());
+		Toolbox::getToolbox().g_AccountDao().edit(fromCard.account());
 		return 1;
 	}
 	return -1;
@@ -183,7 +198,7 @@ int Bank::proceedWithdrawalActions(Card& fromCard, int atmId, const Money& ammou
 
 Account* Bank::getAccountByCredentials(const string& cardNumber, const string& pinCode)
 {
-	Card *cc = g_CardDao.getByNumber(cardNumber);
+	Card *cc = Toolbox::getToolbox().g_CardDao().getByNumber(cardNumber);
 	Account* rr = nullptr;
 	if (cc == nullptr) {
 		return rr;
@@ -197,7 +212,7 @@ Account* Bank::getAccountByCredentials(const string& cardNumber, const string& p
 
 bool Bank::checkCredentials(const string& cardNumber, const string& pinCode)
 {
-	Card* cc = g_CardDao.getByNumber(cardNumber);
+	Card* cc = Toolbox::getToolbox().g_CardDao().getByNumber(cardNumber);
 	if (cc == nullptr) {
 		return false;
 	}
@@ -210,11 +225,14 @@ bool Bank::checkCredentials(const string& cardNumber, const string& pinCode)
 
 void Bank::doIncasators()
 {
-	vector<ATM> atms = g_AtmDao.getAllByBankId(id());
+	vector<ATM> atms = Toolbox::getToolbox().g_AtmDao().getAllByBankId(id());
 
 	for (std::vector<ATM>::iterator it = atms.begin(); it != atms.end(); ++it) {
-		for (int i = 0; i < SIZE_OF_BILLS_ARRAY; i++) {
-			(*it).currencyStorage()[BILLS[i]] = 100;
+		ATM* aa = ATM::getAtmWithMoneyStorage((*it).id());
+		if (aa != nullptr) {
+			(*aa).fillWithMoney(50);
+			ATM::editAtmWithMoneyStorage(*aa);
+			delete aa;
 		}
 	}
 
@@ -222,13 +240,13 @@ void Bank::doIncasators()
 
 void Bank::triggerNextDayForBank(const size_t id)
 {
-	vector<TransferDaemon> tdv = g_TransferDaemonDao.getAllByBankId(id);
+	vector<TransferDaemon> tdv = Toolbox::getToolbox().g_TransferDaemonDao().getAllByBankId(id);
 
 	for (std::vector<TransferDaemon>::iterator it = tdv.begin(); it != tdv.end(); ++it) {
 		proceedTransferDaemon(*it);
 	}
 
-	CURRENT_DATE += ONE_DAY;
+	Toolbox::getToolbox().addOneDayToCurrentDate();
 }
 
 void Bank::nextDay()

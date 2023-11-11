@@ -3,6 +3,7 @@
 #include <string>
 
 using CardNumber = std::string;
+
 using Money = double;
 
 class WithdrawalService
@@ -14,12 +15,11 @@ private:
 	time_t _withdrawalDate;
 	size_t _atmId;
 public:
-	WithdrawalService(const size_t& id);
+	WithdrawalService(const size_t& id = 0);
 	WithdrawalService(const CardNumber& from, const Money& amount, const time_t& withdrawalDate, const size_t& atmId);
 	WithdrawalService(const size_t& id, const CardNumber& from, const Money& amount, const time_t& withdrawalDate, const size_t& atmId);
 	WithdrawalService(const WithdrawalService& ss);
 	WithdrawalService(const CardNumber&, const Money&, int);
-
 	~WithdrawalService();
 
 	inline const size_t& id() const {
@@ -45,5 +45,6 @@ public:
 		return _atmId;
 	}
 
-	static inline bool dateCmp(const WithdrawalService& a, const WithdrawalService& b) { return a.withdrawalDate() > b.withdrawalDate(); }
+	static inline bool dateCmp(const WithdrawalService& a, const WithdrawalService& b) { return a.withdrawalDate() < b.withdrawalDate(); }
+	static inline bool dateCmpR(const WithdrawalService& a, const WithdrawalService& b) { return a.withdrawalDate() > b.withdrawalDate(); }
 };

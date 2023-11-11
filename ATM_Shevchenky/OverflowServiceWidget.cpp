@@ -1,10 +1,12 @@
 #include <QMessageBox>
 #include "OverflowServiceWidget.h"
 #include "ATM.h"
+#include "OverflowService.h"
 
 OverflowServiceWidget::OverflowServiceWidget(ATM& atm, QWidget* parent) :
     QWidget(parent),
-    _atm(atm)
+    _atm(atm),
+    _checkPinCodeDialog(new CheckPinCodeDialog(_atm, this))
 {
     ui.setupUi(this);
     connect(
@@ -71,6 +73,13 @@ void OverflowServiceWidget::tryDeleteOverflowService()
 
 void OverflowServiceWidget::tryCreateOverflowService()
 {
+    _checkPinCodeDialog->updateData();
+    int result = _checkPinCodeDialog->exec();
+    if (result == QDialog::Rejected)
+    {
+        emit logout();
+        return;
+    }
     QMessageBox msgBox;
     msgBox.setWindowTitle("Overflow service");
     OverflowService service(

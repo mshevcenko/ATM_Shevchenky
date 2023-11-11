@@ -1,10 +1,12 @@
 #include <QMessageBox>
 #include "CreateTransferWidget.h"
 #include "ATM.h"
+#include "Transfer.h"
 
 CreateTransferWidget::CreateTransferWidget(ATM& atm, QWidget* parent) :
     QWidget(parent),
-    _atm(atm)
+    _atm(atm),
+    _checkPinCodeDialog(new CheckPinCodeDialog(_atm, this))
 {
     ui.setupUi(this);
     connect(
@@ -44,6 +46,13 @@ void CreateTransferWidget::updateData()
 
 void CreateTransferWidget::tryTransfer()
 {
+    _checkPinCodeDialog->updateData();
+    int result = _checkPinCodeDialog->exec();
+    if (result == QDialog::Rejected)
+    {
+        emit logout();
+        return;
+    }
     Transfer transfer(
         _atm.currentCardNumber(),
         ui.targetLineEdit->text().toStdString(),

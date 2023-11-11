@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
 
-using Money = double;
 using CardNumber = std::string;
+
+using Money = double;
 
 class OverflowCreditService
 {
@@ -13,11 +14,11 @@ private:
 	const Money _amount;
 
 public:
-	OverflowCreditService(const size_t& id);
+	OverflowCreditService(const size_t& id = 0);
 	OverflowCreditService(const CardNumber& from, const CardNumber& to, const Money& amount);
 	OverflowCreditService(const size_t& id, const CardNumber& from, const CardNumber& to, const Money& amount);
 	OverflowCreditService(const OverflowCreditService& ss);
-
+	
 	~OverflowCreditService();
 
 	inline const CardNumber& from() const

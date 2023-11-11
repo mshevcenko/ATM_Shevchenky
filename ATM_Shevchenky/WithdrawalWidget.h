@@ -1,5 +1,6 @@
 #pragma once
 #include "ui_withdrawal.h"
+#include "CheckPinCodeDialog.h"
 
 class ATM;
 
@@ -16,10 +17,12 @@ public:
 
 signals:
     void closed();
+    void logout();
 
 private:
     ATM& _atm;
     Ui_Withdrawal ui;
+    CheckPinCodeDialog* _checkPinCodeDialog;
 
     void tryWithdraw();
 };

@@ -5,7 +5,8 @@
 
 CreateTransferDaemonWidget::CreateTransferDaemonWidget(ATM& atm, QWidget* parent) :
     QWidget(parent),
-    _atm(atm)
+    _atm(atm),
+    _checkPinCodeDialog(new CheckPinCodeDialog(_atm, this))
 {
     ui.setupUi(this);
     connect(
@@ -49,12 +50,19 @@ void CreateTransferDaemonWidget::updateData()
 
 void CreateTransferDaemonWidget::tryCreateTransferDaemon()
 {
+    _checkPinCodeDialog->updateData();
+    int result = _checkPinCodeDialog->exec();
+    if (result == QDialog::Rejected)
+    {
+        emit logout();
+        return;
+    }
     TransferDaemon transfer(
         _atm.currentCardNumber(),
         ui.targetLineEdit->text().toStdString(),
         _atm.calculateFeeSend(ui.ammountToBeReceivedLineEdit->text().replace(",", ".").toDouble()),
         ui.nextTransferDayEdit->dateTime().toMSecsSinceEpoch(),
-        ui.frequencySpinBox->value() * ONE_DAY,
+        ui.frequencySpinBox->value() * Toolbox::getOneDay(),
         ui.activeCheckBox->isChecked()
     );
     QMessageBox msgBox;

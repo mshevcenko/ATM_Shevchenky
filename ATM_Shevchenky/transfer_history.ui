@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>586</width>
-    <height>438</height>
+    <width>623</width>
+    <height>490</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -173,8 +173,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>568</width>
-        <height>318</height>
+        <width>605</width>
+        <height>370</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -215,6 +215,42 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QPushButton" name="moreButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	color: white;
+	background-color: rgb(100, 100, 100);
+	border-radius: 10px;
+}
+
+QPushButton:hover {
+	background-color: rgb(50, 50, 50);
+}</string>
+         </property>
+         <property name="text">
+          <string>MORE</string>
          </property>
         </widget>
        </item>

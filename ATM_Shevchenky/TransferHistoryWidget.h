@@ -1,5 +1,8 @@
 #pragma once
+#include <vector>
 #include "ui_transfer_history.h"
+#include "Transfer.h"
+#include "WithdrawalService.h"
 
 class ATM;
 
@@ -20,4 +23,10 @@ signals:
 private:
     ATM& _atm;
     Ui_TransferHistory ui;
+    std::vector<Transfer> _transfers;
+    std::vector<WithdrawalService> _withdrawals;
+    int _lastTransfer;
+    int _lastWithdrawal;
+
+    void loadMore();
 };

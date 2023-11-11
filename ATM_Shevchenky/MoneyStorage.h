@@ -1,5 +1,4 @@
 #pragma once
-#include "Database.h"
 
 class MoneyStorage {
 public:
@@ -21,7 +20,7 @@ private:
 	const size_t _amount;
 	const size_t _atmId;
 public:
-	MoneyStorage(const size_t&);
+	MoneyStorage(const size_t& id = 0);
 	MoneyStorage(const Denomination&, const size_t&, const size_t&);
 	MoneyStorage(const size_t&, const Denomination&, const size_t&, const size_t&);
 	~MoneyStorage();

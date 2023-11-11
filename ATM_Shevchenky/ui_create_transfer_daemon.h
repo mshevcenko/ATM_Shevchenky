@@ -323,8 +323,8 @@ public:
         targetLineEdit->setText(QCoreApplication::translate("CreateTransferDaemon", "1234567890123456", nullptr));
         nextTransferDateLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Next Transfer Day:", nullptr));
         frequencyLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Frequency (days):", nullptr));
-        ammountToBeSentLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Ammount to be sent:", nullptr));
-        ammountToBeReceivedLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Ammount to be received:", nullptr));
+        ammountToBeSentLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Amount to be sent:", nullptr));
+        ammountToBeReceivedLabel->setText(QCoreApplication::translate("CreateTransferDaemon", "Amount to be received:", nullptr));
         activeCheckBox->setText(QCoreApplication::translate("CreateTransferDaemon", "Active", nullptr));
         createButton->setText(QCoreApplication::translate("CreateTransferDaemon", "CREATE", nullptr));
     } // retranslateUi

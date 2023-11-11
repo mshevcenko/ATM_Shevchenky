@@ -1,4 +1,5 @@
 #include <QMessageBox>
+#include <string>
 #include "LoginWidget.h"
 #include "ATM.h"
 
@@ -25,16 +26,26 @@ void LoginWidget::updateData()
 
 void LoginWidget::tryLogin()
 {
+    std::string cardNumber = ui.cardNumberLineEdit->text().toStdString();
+    std::string pinCode = ui.pinCodeLineEdit->text().toStdString();
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Login");
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    if (_atm.isExpired(cardNumber))
+    {
+        msgBox.setText("Your card is expired!");
+        msgBox.exec();
+        return;
+    }
     if (_atm.insertCard(
-        ui.cardNumberLineEdit->text().toStdString(),
-        ui.pinCodeLineEdit->text().toStdString()))
+        cardNumber,
+        pinCode))
     {
         emit login();
     }
     else
     {
-        QMessageBox msgBox;
-        msgBox.setWindowTitle("Incorrect data");
         msgBox.setText("Incorrect card number or pin code!");
         msgBox.exec();
     }

@@ -1,7 +1,8 @@
 #pragma once
 #include <ctime>
-#include "Card.h"
+#include <string>
 
+using CardNumber = std::string;
 using Money = double;
 
 class Transfer
@@ -13,15 +14,22 @@ private:
 	Money _amount;
 	time_t _transferDate;
 public:
-
+	
 	Transfer(const size_t& id = 0);
 	Transfer(const CardNumber& from, const CardNumber& to, const Money& amount, const time_t& transferDate);
 	Transfer(const size_t& id, const CardNumber& from, const CardNumber& to, const Money& amount, const time_t& transferDate);
-
 	Transfer(const CardNumber&, const CardNumber&, const Money);
+	Transfer(const Transfer& ss);
 	~Transfer();
 
-	Transfer(const Transfer& ss) : Transfer(ss._id, ss._from, ss._to, ss._amount, ss._transferDate) {}
+	Transfer& operator=(Transfer other) noexcept {
+		std::swap(_id, other._id);
+		std::swap(_from, other._from);
+		std::swap(_to, other._to);
+		std::swap(_amount, other._amount);
+		std::swap(_transferDate, other._transferDate);
+		return *this;
+	}
 
 	inline const CardNumber& from() const
 	{
@@ -55,5 +63,8 @@ public:
 		_from = from;
 	}
 
-	static inline bool dateCmp(const Transfer& a, const Transfer& b) { return a.transferDate() > b.transferDate(); }
+	static inline bool dateCmp(const Transfer& a, const Transfer& b) { return a.transferDate() < b.transferDate(); }
+	static inline bool dateCmpR(const Transfer& a, const Transfer& b) { return a.transferDate() > b.transferDate(); }
 };
+
+bool compareWithoutId(const Transfer& tr1, const Transfer& tr2);

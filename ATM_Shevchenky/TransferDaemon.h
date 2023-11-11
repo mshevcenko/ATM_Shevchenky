@@ -17,14 +17,11 @@ private:
 	const time_t _frequency;
 	bool _isActive;
 public:
-	TransferDaemon(const size_t& id);
+	TransferDaemon(const size_t& id = 0);
 	TransferDaemon(const CardNumber& from, const CardNumber& to, const Money& amount, const time_t& nextTransferDate, const time_t& frequency, bool isActive);
 	TransferDaemon(const size_t& id, const CardNumber& from, const CardNumber& to, const Money& amount, const time_t& nextTransferDate, const time_t& frequency, bool isActive);
-
-	
-	~TransferDaemon();
-
 	TransferDaemon(const TransferDaemon& ss);
+	~TransferDaemon();
 
 	inline const CardNumber& from() const
 	{
@@ -56,8 +53,6 @@ public:
 		return _isActive;
 	}
 
-	void setActive(bool active);
-
 	inline const size_t& id() const {
 		return _id;
 	}
@@ -65,5 +60,7 @@ public:
 	inline void nextDate() {
 		_nextTransferDate += _frequency;
 	}
+
+	void setActive(bool active);
 
 };

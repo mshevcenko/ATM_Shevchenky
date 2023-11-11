@@ -17,17 +17,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="check_pin_code.ui" />
     <QtUic Include="create_overflow_credit_service.ui" />
     <QtUic Include="create_transfer.ui" />
     <QtUic Include="create_transfer_daemon.ui" />
     <QtUic Include="credit_limit.ui" />
+    <QtUic Include="create_card.ui" />
     <QtUic Include="login.ui" />
     <QtUic Include="main.ui" />
     <QtUic Include="overflow.ui" />
     <QtUic Include="overflow_credit_services_list.ui" />
     <QtUic Include="overflow_credit_service_card.ui" />
     <QtUic Include="overflow_service.ui" />
-    <QtUic Include="test_shadow.ui" />
     <QtUic Include="transfer.ui" />
     <QtUic Include="transfer_daemons_list.ui" />
     <QtUic Include="transfer_daemon_card.ui" />
@@ -47,6 +48,8 @@
     <ClInclude Include="BankDao.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardDao.h" />
+    <QtMoc Include="CreateCardDialog.h" />
+    <QtMoc Include="CheckPinCodeDialog.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="gutil.h" />
     <ClInclude Include="MoneyStorage.h" />
@@ -112,11 +115,14 @@
     <ClCompile Include="aspectratiopixmaplabel.cpp" />
     <ClCompile Include="ATM.cpp" />
     <ClCompile Include="AtmDao.cpp" />
+    <ClCompile Include="autil.cpp" />
     <ClCompile Include="Bank.cpp" />
     <ClCompile Include="BankDao.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardDao.cpp" />
+    <ClCompile Include="CheckPinCodeDialog.cpp" />
     <ClCompile Include="ClickableLabel.cpp" />
+    <ClCompile Include="CreateCardDialog.cpp" />
     <ClCompile Include="CreateOverflowCreditServiceWidget.cpp" />
     <ClCompile Include="CreateTransferDaemonWidget.cpp" />
     <ClCompile Include="CreateTransferWidget.cpp" />

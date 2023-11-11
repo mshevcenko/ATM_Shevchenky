@@ -1,3 +1,5 @@
+#include <QMenuBar>
+#include <QMessageBox>
 #include "MainWindow.h"
 #include "ATM.h"
 
@@ -16,8 +18,10 @@ MainWindow::MainWindow(ATM& atm, QWidget* parent) :
 	_overflowCreditServicesListWidget(new OverflowCreditServicesListWidget(_atm, this)),
 	_transferHistoryWidget(new TransferHistoryWidget(_atm, this)),
 	_withdrawalWidget(new WithdrawalWidget(_atm, this)),
-	_creditLimitWidget(new CreditLimitWidget(_atm, this))
+	_creditLimitWidget(new CreditLimitWidget(_atm, this)),
+	_createCardDialog(new CreateCardDialog(_atm, this))
 {
+	setWindowTitle("ATM");
 	setMinimumSize(650, 650);
 	_loginWidget->updateData();
 	setCentralWidget(_loginWidget);
@@ -33,7 +37,73 @@ MainWindow::MainWindow(ATM& atm, QWidget* parent) :
 	_transferHistoryWidget->setVisible(false);
 	_withdrawalWidget->setVisible(false);
 	_creditLimitWidget->setVisible(false);
+	initMenuBar();
 	initConnections();
+}
+
+void MainWindow::initMenuBar()
+{
+	QAction* createCard = menuBar()->addAction("Create Card");
+	QAction* nextDay = menuBar()->addAction("Next Day");
+	QAction* incasators = menuBar()->addAction("Incasators");
+	connect(
+		createCard,
+		&QAction::triggered,
+		this,
+		&MainWindow::tryCreateCard
+	);
+	connect(
+		nextDay,
+		&QAction::triggered,
+		this,
+		&MainWindow::tryNextDay
+	);
+	connect(
+		incasators,
+		&QAction::triggered,
+		this,
+		&MainWindow::doIncasators
+	);
+}
+
+void MainWindow::tryNextDay()
+{
+	if (centralWidget() == _loginWidget)
+	{
+		_atm.nextDay();
+		QMessageBox msgBox;
+		msgBox.setWindowTitle("Next day");
+		msgBox.setText("Next day has been called successfully!");
+		msgBox.setStandardButtons(QMessageBox::Ok);
+		msgBox.setDefaultButton(QMessageBox::Ok);
+		msgBox.exec();
+	}
+	else
+	{
+		QMessageBox msgBox;
+		msgBox.setWindowTitle("Next day");
+		msgBox.setText("Next day can be called only on login window!");
+		msgBox.setStandardButtons(QMessageBox::Ok);
+		msgBox.setDefaultButton(QMessageBox::Ok);
+		msgBox.exec();
+	}
+}
+
+void MainWindow::tryCreateCard()
+{
+	_createCardDialog->updateData();
+	_createCardDialog->show();
+}
+
+void MainWindow::doIncasators()
+{
+	_atm.doIncasators();
+	QMessageBox msgBox;
+	msgBox.setWindowTitle("Incasators");
+	msgBox.setText("Incasators came and refilled the ATM!");
+	msgBox.setStandardButtons(QMessageBox::Ok);
+	msgBox.setDefaultButton(QMessageBox::Ok);
+	msgBox.exec();
 }
 
 void MainWindow::initConnections()
@@ -99,10 +169,20 @@ void MainWindow::initConnections()
 		this,
 		&MainWindow::setTransferWidget);
 	connect(
+		_createTransferWidget,
+		&CreateTransferWidget::logout,
+		this,
+		&MainWindow::logout);
+	connect(
 		_createTransferDaemonWidget,
 		&CreateTransferDaemonWidget::closed,
 		this,
 		&MainWindow::setTransferWidget);
+	connect(
+		_createTransferDaemonWidget,
+		&CreateTransferDaemonWidget::logout,
+		this,
+		&MainWindow::logout);
 	connect(
 		_transferDaemonsListWidget,
 		&TransferDaemonsListWidget::closed,
@@ -134,10 +214,20 @@ void MainWindow::initConnections()
 		this,
 		&MainWindow::setOverflowWidget);
 	connect(
+		_overflowServiceWidget,
+		&OverflowServiceWidget::logout,
+		this,
+		&MainWindow::logout);
+	connect(
 		_createOverflowCreditServiceWidget,
 		&CreateOverflowCreditServiceWidget::closed,
 		this,
 		&MainWindow::setOverflowWidget);
+	connect(
+		_createOverflowCreditServiceWidget,
+		&CreateOverflowCreditServiceWidget::logout,
+		this,
+		&MainWindow::logout);
 	connect(
 		_overflowCreditServicesListWidget,
 		&OverflowCreditServicesListWidget::closed,
@@ -154,45 +244,29 @@ void MainWindow::initConnections()
 		this,
 		&MainWindow::setMainWidget);
 	connect(
-		_withdrawalWidget,
-		&WithdrawalWidget::closed,
+		_creditLimitWidget,
+		&CreditLimitWidget::closed,
 		this,
 		&MainWindow::setMainWidget);
+	connect(
+		_withdrawalWidget,
+		&WithdrawalWidget::logout,
+		this,
+		&MainWindow::logout);
+	connect(
+		_withdrawalWidget,
+		&WithdrawalWidget::logout,
+		this,
+		&MainWindow::logout);
 }
 
 MainWindow::~MainWindow() {}
 
-//void MainWindow::changeWindow(Window window)
-//{
-//	takeCentralWidget()->setVisible(false);
-//	switch (window)
-//	{
-//	case MAIN:
-//		setCentralWidget(_mainWidget);
-//		_mainWidget->setVisible(true);
-//		break;
-//	case TRANSFER:
-//		setCentralWidget(_transferWidget);
-//		_transferWidget->setVisible(true);
-//		break;
-//	case CREATE_TRANSFER:
-//		setCentralWidget(_createTransferWidget);
-//		_createTransferWidget->setVisible(true);
-//		break;
-//	case CREATE_TRANSFER_DAEMON:
-//		setCentralWidget(_createTransferDaemonWidget);
-//		_createTransferDaemonWidget->setVisible(true);
-//		break;
-//	case TRANSFER_DAEMONS_LIST:
-//		setCentralWidget(_transferDaemonsListWidget);
-//		_transferDaemonsListWidget->setVisible(true);
-//		break;
-//	default:
-//		setCentralWidget(_loginWidget);
-//		_loginWidget->setVisible(true);
-//		break;
-//	}
-//}
+void MainWindow::logout()
+{
+	_atm.exit();
+	setLoginWidget();
+}
 
 void MainWindow::setLoginWidget()
 {

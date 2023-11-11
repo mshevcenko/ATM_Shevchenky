@@ -1,12 +1,16 @@
 #include <QMessageBox>
+#include <QRegularExpressionValidator>
 #include "CreateOverflowCreditServiceWidget.h"
 #include "ATM.h"
+#include "OverflowCreditService.h"
 
 CreateOverflowCreditServiceWidget::CreateOverflowCreditServiceWidget(ATM& atm, QWidget* parent) :
     QWidget(parent),
-    _atm(atm)
+    _atm(atm),
+    _checkPinCodeDialog(new CheckPinCodeDialog(_atm, this))
 {
     ui.setupUi(this);
+    ui.ammountToBeTriggeredLineEdit->setValidator((new QRegularExpressionValidator(QRegularExpression("-?(0|([1-9][0-9]{0,8}))((\\.|,)[0-9]{1,2})?"), this)));
     connect(
         ui.closeButton,
         &ClickableLabel::clicked,
@@ -32,6 +36,13 @@ void CreateOverflowCreditServiceWidget::updateData()
 
 void CreateOverflowCreditServiceWidget::tryCreateOverflowCreditService()
 {
+    _checkPinCodeDialog->updateData();
+    int result = _checkPinCodeDialog->exec();
+    if (result == QDialog::Rejected)
+    {
+        emit logout();
+        return;
+    }
     OverflowCreditService service(
         _atm.currentCardNumber(),
         ui.targetLineEdit->text().toStdString(),

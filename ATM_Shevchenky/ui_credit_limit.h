@@ -123,7 +123,7 @@ public:
         QFont font3;
         font3.setPointSize(20);
         creditLimitLineEdit->setFont(font3);
-        creditLimitLineEdit->setMaxLength(7);
+        creditLimitLineEdit->setMaxLength(13);
         creditLimitLineEdit->setAlignment(Qt::AlignCenter);
 
         verticalLayout_2->addWidget(creditLimitLineEdit);
