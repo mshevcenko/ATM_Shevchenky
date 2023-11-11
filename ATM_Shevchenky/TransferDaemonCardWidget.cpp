@@ -2,6 +2,7 @@
 #include <QMessageBox>
 #include "TransferDaemonCardWidget.h"
 #include "ATM.h"
+#include "autil.h"
 
 TransferDaemonCardWidget::TransferDaemonCardWidget(ATM& atm, const TransferDaemon& transferDaemon, QWidget *parent):
 	QWidget(parent),
@@ -12,7 +13,7 @@ TransferDaemonCardWidget::TransferDaemonCardWidget(ATM& atm, const TransferDaemo
 	ui.targetLineEdit->setText(QString::fromStdString(_transferDaemon.to()));
 	ui.ammountLineEdit->setText(QString::number(_transferDaemon.amount(), 'f', 2));
 	ui.activeCheckBox->setChecked(_transferDaemon.isActive());
-	ui.frequencyLineEdit->setText(QString::number(_transferDaemon.frequency()));
+	ui.frequencyLineEdit->setText(QString::number(_transferDaemon.frequency() / Toolbox::getOneDay()));
 	ui.nextTransferDayLineEdit->setText(QDateTime::fromSecsSinceEpoch(_transferDaemon.nextTransferDate()).date().toString("dd.MM.yyyy"));
 	connect(
 		ui.deleteLabel,

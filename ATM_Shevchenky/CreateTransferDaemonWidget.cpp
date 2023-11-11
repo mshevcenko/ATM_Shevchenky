@@ -61,7 +61,7 @@ void CreateTransferDaemonWidget::tryCreateTransferDaemon()
         _atm.currentCardNumber(),
         ui.targetLineEdit->text().toStdString(),
         _atm.calculateFeeSend(ui.ammountToBeReceivedLineEdit->text().replace(",", ".").toDouble()),
-        ui.nextTransferDayEdit->dateTime().toMSecsSinceEpoch(),
+        ui.nextTransferDayEdit->dateTime().toSecsSinceEpoch(),
         ui.frequencySpinBox->value() * Toolbox::getOneDay(),
         ui.activeCheckBox->isChecked()
     );

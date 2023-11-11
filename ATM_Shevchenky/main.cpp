@@ -30,26 +30,15 @@ void Console()
 
 int main(int argc, char *argv[])
 {
-    Console();
+    //Console();
     //1234567890876543
     //1234
-    //assert(
-    //theTest();
-        //);
+    //assert(theTest());
     Toolbox::setCurrentDate(time(nullptr));
     Toolbox::setOneDay(86400);
     QApplication a(argc, argv);
     ATM atm = copyAndDeletePointer(ATM::getAtmWithMoneyStorage(1));
     MainWindow mainWindow(atm);
     mainWindow.show();
-    /*TransferDaemon t(
-        "1234567890876543",
-        "0000000000000000",
-        100.0,
-        time(nullptr),
-        86400,
-        true
-    );
-    cout << boolalpha << Toolbox::getToolbox().g_TransferDaemonDao().create(t) << endl;*/
     return a.exec();
 }
