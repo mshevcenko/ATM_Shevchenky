@@ -131,7 +131,7 @@ public:
         OverflowCreditServiceCard->setWindowTitle(QCoreApplication::translate("OverflowCreditServiceCard", "Form", nullptr));
         targetLabel->setText(QCoreApplication::translate("OverflowCreditServiceCard", "Target:", nullptr));
         targetLineEdit->setText(QCoreApplication::translate("OverflowCreditServiceCard", "1234567890123456", nullptr));
-        ammountLabel->setText(QCoreApplication::translate("OverflowCreditServiceCard", "Amount:", nullptr));
+        ammountLabel->setText(QCoreApplication::translate("OverflowCreditServiceCard", "Amount to be triggered:", nullptr));
         deleteLabel->setText(QString());
     } // retranslateUi
 
