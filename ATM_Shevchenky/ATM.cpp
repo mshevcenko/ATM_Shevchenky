@@ -141,7 +141,9 @@ bool ATM::createOverflowService(OverflowService& service)
 	res &= Card::checkIfCardIsValid(service.to());
 	if (res) {
 		if (Toolbox::getToolbox().g_OverflowServiceDao().create(service)) {
-			Bank::proceedOverflowService(service);
+			if (Bank::proceedOverflowService(service) == -4) {
+				return false;
+			}
 			return true;
 		}
 	}
@@ -155,7 +157,9 @@ bool ATM::createOverflowCreditService(OverflowCreditService service)
 	res &= Card::checkIfCardIsValid(service.to());
 	if (res) {
 		if (Toolbox::getToolbox().g_OverflowCreditServiceDao().create(service)) {
-			Bank::proceedOverflowCreditService(service);
+			if (Bank::proceedOverflowCreditService(service) == -4) {
+				return false;
+			}
 			return true;
 		}
 	}
@@ -237,7 +241,9 @@ bool ATM::createTransferDaemon(TransferDaemon transferDaemon)
 	res &= Card::checkIfCardIsValid(transferDaemon.to());
 	if (res) {
 		if (Toolbox::getToolbox().g_TransferDaemonDao().create(transferDaemon)) {
-			Bank::proceedTransferDaemon(transferDaemon);
+			if (Bank::proceedTransferDaemon(transferDaemon) == -4) {
+				return false;
+			}
 			return true;
 		}
 	}

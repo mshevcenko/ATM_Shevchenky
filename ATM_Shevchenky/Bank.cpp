@@ -28,6 +28,11 @@ Bank::Bank(const Bank& ss) : Bank(ss._id, ss._name) {}
 
 int Bank::proceedOverflowService(const OverflowService& ss)
 {
+	if (ss.from() == ss.to()) {
+		Toolbox::getToolbox().g_OverflowServiceDao().remove(ss);
+		return -4;
+	}
+
 	Card *fromCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.from());
 	if (fromCardP == nullptr || checkIfCardIsExpired(*fromCardP)) {
 		Toolbox::getToolbox().g_OverflowServiceDao().remove(ss);
@@ -51,6 +56,11 @@ int Bank::proceedOverflowService(const OverflowService& ss)
 
 int Bank::proceedOverflowCreditService(const OverflowCreditService& ss)
 {
+	if (ss.from() == ss.to()) {
+		Toolbox::getToolbox().g_OverflowCreditServiceDao().remove(ss);
+		return -4;
+	}
+
 	Card* fromCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.from());
 	if (fromCardP == nullptr || checkIfCardIsExpired(*fromCardP)) {
 		Toolbox::getToolbox().g_OverflowCreditServiceDao().remove(ss);
@@ -76,6 +86,10 @@ int Bank::proceedOverflowCreditService(const OverflowCreditService& ss)
 
 int Bank::proceedTransfer(Transfer ss)
 {
+	if (ss.from() == ss.to()) {
+		return -4;
+	}
+
 	if (ss.amount() <= 0) {
 		return -3;
 	}
@@ -129,6 +143,11 @@ int Bank::proceedTransferActions(Card& fromCard, Card& toCard, const Money& amou
 
 int Bank::proceedTransferDaemon(TransferDaemon & ss)
 {
+	if (ss.from() == ss.to()) {
+		Toolbox::getToolbox().g_TransferDaemonDao().remove(ss);
+		return -4;
+	}
+
 	if (ss.amount() <= 0) {
 		Toolbox::getToolbox().g_TransferDaemonDao().remove(ss);
 		return -3;
