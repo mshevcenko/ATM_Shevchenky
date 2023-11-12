@@ -40,7 +40,7 @@ void CreateCardDialog::tryCreateCard()
     std::string cardNumber = ui.cardNumberLineEdit->text().toStdString();
     std::string pinCode = ui.pinCodeLineEdit->text().toStdString();
     double balance = ui.balanceLineEdit->text().replace(",", ".").toDouble();
-    time_t expiryDate = ui.expiryDateDayEdit->dateTime().toMSecsSinceEpoch();
+    time_t expiryDate = ui.expiryDateDayEdit->dateTime().toSecsSinceEpoch();
     QMessageBox msgBox;
     msgBox.setWindowTitle("Create card");
     msgBox.setStandardButtons(QMessageBox::Ok);

@@ -2,6 +2,7 @@
 #include <QMessageBox>
 #include "MainWindow.h"
 #include "ATM.h"
+#include "autil.h"
 
 MainWindow::MainWindow(ATM& atm, QWidget* parent) :
 	QMainWindow(parent),
@@ -73,7 +74,10 @@ void MainWindow::tryNextDay()
 		_atm.nextDay();
 		QMessageBox msgBox;
 		msgBox.setWindowTitle("Next day");
-		msgBox.setText("Next day has been called successfully!");
+		QString message = "Next day has been called successfully!\n";
+		message += "Current day: ";
+		message += QDateTime::fromSecsSinceEpoch(Toolbox::getCurrentDate()).date().toString("dd.MM.yyyy");
+		msgBox.setText(message);
 		msgBox.setStandardButtons(QMessageBox::Ok);
 		msgBox.setDefaultButton(QMessageBox::Ok);
 		msgBox.exec();
