@@ -134,7 +134,7 @@ int Bank::proceedTransferDaemon(TransferDaemon & ss)
 		return -3;
 	}
 	
-	if (ss.nextTransferDate() == Toolbox::getCurrentDate()) {
+	if (ss.nextTransferDate() <= Toolbox::getCurrentDate()) {
 
 		Card* fromCardP = Toolbox::getToolbox().g_CardDao().getByNumber(ss.from());
 		if (fromCardP == nullptr || checkIfCardIsExpired(*fromCardP)) {

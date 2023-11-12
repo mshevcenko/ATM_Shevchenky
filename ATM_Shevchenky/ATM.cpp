@@ -236,7 +236,10 @@ bool ATM::createTransferDaemon(TransferDaemon transferDaemon)
 	bool res = Card::checkIfCardIsValid(transferDaemon.from());
 	res &= Card::checkIfCardIsValid(transferDaemon.to());
 	if (res) {
-		return Toolbox::getToolbox().g_TransferDaemonDao().create(transferDaemon);
+		if (Toolbox::getToolbox().g_TransferDaemonDao().create(transferDaemon)) {
+			Bank::proceedTransferDaemon(transferDaemon);
+			return true;
+		}
 	}
 	return false;
 }
