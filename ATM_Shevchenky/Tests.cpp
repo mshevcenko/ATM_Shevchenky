@@ -1,5 +1,5 @@
+#include <cassert>
 #include "autil.h"
-
 
 #ifndef ndebug
 string cardnumber1 = "2481632641282565";
@@ -275,6 +275,7 @@ bool theTest() {
 	initValuesForTests();
 	bool res = doingTesting();
 	deleteInitedData();
+	assert(res);
 	return res;
 }
 #else
