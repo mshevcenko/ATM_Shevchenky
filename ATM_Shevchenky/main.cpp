@@ -30,10 +30,10 @@ void Console()
 
 int main(int argc, char *argv[])
 {
-    //Console();
     //1234567890876543
     //1234
-    //assert(theTest());
+    Console();
+    theTest();
     Toolbox::setCurrentDate(time(nullptr));
     Toolbox::setOneDay(86400);
     QApplication a(argc, argv);
